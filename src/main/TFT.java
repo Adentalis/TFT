@@ -16,9 +16,11 @@ public class TFT {
 
 
         ArrayList<Champion> champions = championFabric.getChampionList();
+        System.out.println(champions.size());
         championFabric.printOrigins();
         championFabric.printClasses();
-        championFabric.printChampions();
+        //championFabric.printChampions();
+
 
 
 

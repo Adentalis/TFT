@@ -50,14 +50,20 @@ public class Champion {
         this.cost = cost;
     }
 
-    public boolean isOrigin(Origin o){
-        //TODO
-        return true;
+    public boolean isOrigin(Origin origin){
+        for(Origin o : this.origin){
+            if(o.equals(origin))
+                return true;
+        }
+        return false;
     }
 
-    public boolean isClas(Classes c){
-        //TODO
-        return true;
+    public boolean isClasses(Classes classes){
+        for(Classes cl : this.classes){
+            if(cl.equals(classes))
+                return true;
+        }
+        return false;
     }
 
     public String toString(){

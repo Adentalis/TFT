@@ -20,7 +20,7 @@ public class ChampionFabric {
 
 
     public void printOrigins() {
-        System.out.println("--ORIGINS--");
+        System.out.println("\n--ORIGINS--");
         for (Origin o : this.origins) {
             System.out.println("\n-- " + o + "--");
             for (Champion c : champions) {
@@ -34,11 +34,11 @@ public class ChampionFabric {
 
 
     public void printClasses() {
-        System.out.println("--ORIGINS--");
+        System.out.println("\n--CLASSES--");
         for (Classes cl : this.classes) {
             System.out.println("\n-- " + cl + "--");
             for (Champion c : champions) {
-                if (c.isClas(cl)) {
+                if (c.isClasses(cl)) {
                     System.out.print(c.getName() + " | ");
                 }
             }
@@ -49,7 +49,9 @@ public class ChampionFabric {
     private Set<Classes> initClasses() {
         Set<Classes> classesDummy = new HashSet<>();
         for (Champion c : champions) {
-       //     classesDummy.add(c.getClas());
+            for(Classes cl : c.getClas()){
+                classesDummy.add(cl);
+            }
         }
         return classesDummy;
     }
@@ -57,7 +59,9 @@ public class ChampionFabric {
     private Set<Origin> initOrigins() {
         Set<Origin> originsDummy = new HashSet<>();
         for (Champion c : champions) {
-     //       originsDummy.add(c.getOrigin());
+            for(Origin o : c.getOrigin()){
+                originsDummy.add(o);
+            }
         }
         return originsDummy;
     }
@@ -133,6 +137,8 @@ public class ChampionFabric {
                 new ArrayList<Classes>(Arrays.asList(Classes.GUNSLINGER))));
         championsDummy.add(new Champion("Lulu", 2, new ArrayList<Origin>(Arrays.asList(Origin.YORDLE)),
                 new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
+        championsDummy.add(new Champion("Miss Fortune", 5, new ArrayList<Origin>(Arrays.asList(Origin.PIRATE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.GUNSLINGER))));
         championsDummy.add(new Champion("Mordekaiser", 1, new ArrayList<Origin>(Arrays.asList(Origin.PHANTOM)),
                 new ArrayList<Classes>(Arrays.asList(Classes.KNIGHT))));
         championsDummy.add(new Champion("Morgana", 3, new ArrayList<Origin>(Arrays.asList(Origin.DEMON)),
@@ -175,9 +181,9 @@ public class ChampionFabric {
                 new ArrayList<Classes>(Arrays.asList(Classes.BRAWLER))));
         championsDummy.add(new Champion("Yasou", 5, new ArrayList<Origin>(Arrays.asList(Origin.EXILE)),
                 new ArrayList<Classes>(Arrays.asList(Classes.BLADEMASTER))));
+        championsDummy.add(new Champion("Zed", 2, new ArrayList<Origin>(Arrays.asList(Origin.NINJA)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ASSASIN))));
 
-
-   //     championsDummy.add(x);
         return championsDummy;
     }
 
