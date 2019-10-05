@@ -64,63 +64,115 @@ public class ChampionFabric {
 
     private ArrayList<Champion> initChampionList() {
         ArrayList<Champion> championsDummy = new ArrayList<>();
-        /*
-        championsDummy.add(new Champion("Aatrox", 3, Origin.DEMON, Classes.BLADEMASTER));
-        championsDummy.add(new Champion("Ahri", 2, Origin.WILD, Classes.SORCERER));
-        championsDummy.add(new Champion("Akali", 4, Origin.NINJA, Classes.ASSASIN));
-        championsDummy.add(new Champion("Anivia", 5, Origin.GLACIAL, Classes.ELEMENTALIST));
-        championsDummy.add(new Champion("Ashe", 3, Origin.GLACIAL, Classes.RANGER));
-        championsDummy.add(new Champion("Aurelion Sol", 4, Origin.DRAGON, Classes.SORCERER));
-        championsDummy.add(new Champion("Blitzcrank", 3, Origin.ROBOT, Classes.BRAWLER));
-        championsDummy.add(new Champion("Brand", 3, Origin.DEMON, Classes.ELEMENTALIST));
-        championsDummy.add(new Champion("Braum", 3, Origin.GLACIAL, Classes.GUARDIAN));
-        championsDummy.add(new Champion("Camile", 3, Origin.HEXTECH, Classes.BLADEMASTER));
-        championsDummy.add(new Champion("Chogath", 3, Origin.VOID, Classes.BRAWLER));
-        championsDummy.add(new Champion("Darius", 3, Origin.IMPERIAL, Classes.KNIGHT));
-        championsDummy.add(new Champion("Draven", 3, Origin.IMPERIAL, Classes.BLADEMASTER));
-        championsDummy.add(new Champion("Elise", 3, Origin.DEMON, Classes.SHAPESHIFTER));
-        championsDummy.add(new Champion("Evellyn", 3, Origin.DEMON, Classes.ASSASIN));
-        championsDummy.add(new Champion("Fiora", 3, Origin.NOBLE, Classes.BLADEMASTER));
-        championsDummy.add(new Champion("Gangplank", 3, Origin.PIRATE, Classes.BLADEMASTER)); //ADD
-        championsDummy.add(new Champion("Garen", 3, Origin.NOBLE, Classes.KNIGHT));
-        championsDummy.add(new Champion("Gnar", 3, Origin.WILD, Classes.SHAPESHIFTER));//ADD
-        championsDummy.add(new Champion("Graves", 3, Origin.PIRATE, Classes.GUNSLINGER));
-        championsDummy.add(new Champion("Jayce", 3, Origin.HEXTECH, Classes.SHAPESHIFTER));
-        championsDummy.add(new Champion("Jinx", 3, Origin.HEXTECH, Classes.GUNSLINGER));
-        championsDummy.add(new Champion("Kaisa", 3, Origin.VOID, Classes.RANGER)); //add
-        championsDummy.add(new Champion("Karthus", 3, Origin.PHANTOM, Classes.SORCERER));
-        championsDummy.add(new Champion("Kassadin", 3, Origin.VOID, Classes.SORCERER));
-        championsDummy.add(new Champion("Katarina", 3, Origin.IMPERIAL, Classes.ASSASIN));
-        championsDummy.add(new Champion("Kayle", 3, Origin.NOBLE, Classes.KNIGHT));
-        championsDummy.add(new Champion("Kennen", 3, Origin.NINJA, Classes.ELEMENTALIST));
-        championsDummy.add(new Champion("Khazix", 3, Origin.VOID, Classes.ASSASIN));
-        championsDummy.add(new Champion("Kindred", 3, Origin.PHANTOM, Classes.RANGER));
-        championsDummy.add(new Champion("Leona", 3, Origin.NOBLE, Classes.GUARDIAN));
-        championsDummy.add(new Champion("Lissandra", 3, Origin.GLACIAL, Classes.ELEMENTALIST));
-        championsDummy.add(new Champion("Lucian", 3, Origin.NOBLE, Classes.GUNSLINGER));
-        championsDummy.add(new Champion("Lulu", 3, Origin.YORDLE, Classes.SORCERER));
-        championsDummy.add(new Champion("Mordekaiser", 3, Origin.PHANTOM, Classes.KNIGHT));
-        championsDummy.add(new Champion("Morgana", 3, Origin.DEMON, Classes.SORCERER));
-        championsDummy.add(new Champion("Nidalee", 3, Origin.WILD, Classes.SHAPESHIFTER));
-        championsDummy.add(new Champion("Pantheon", 3, Origin.DRAGON, Classes.GUARDIAN));
-        championsDummy.add(new Champion("Poppy", 3, Origin.YORDLE, Classes.KNIGHT));
-        championsDummy.add(new Champion("Pyke", 3, Origin.PIRATE, Classes.ASSASIN));
-        championsDummy.add(new Champion("RekSai", 3, Origin.VOID, Classes.BRAWLER));
-        championsDummy.add(new Champion("Rengar", 3, Origin.WILD, Classes.ASSASIN));
-        championsDummy.add(new Champion("Sejuani", 3, Origin.GLACIAL, Classes.KNIGHT));
-        championsDummy.add(new Champion("Shen", 3, Origin.NINJA, Classes.BLADEMASTER));
-        championsDummy.add(new Champion("Shyvana", 3, Origin.DRAGON, Classes.SHAPESHIFTER));
-        championsDummy.add(new Champion("Swain", 3, Origin.IMPERIAL, Classes.SHAPESHIFTER));//ADD
-        championsDummy.add(new Champion("Tristana", 3, Origin.YORDLE, Classes.GUNSLINGER));
-        championsDummy.add(new Champion("Twisted Fate", 3, Origin.PIRATE, Classes.SORCERER));
-        championsDummy.add(new Champion("Varus", 3, Origin.DEMON, Classes.RANGER));
-        championsDummy.add(new Champion("Vayne", 3, Origin.NOBLE, Classes.RANGER));
-        championsDummy.add(new Champion("Veigar", 3, Origin.YORDLE, Classes.SORCERER));
-        championsDummy.add(new Champion("VI", 3, Origin.HEXTECH, Classes.BRAWLER));
-        championsDummy.add(new Champion("Volibear", 3, Origin.GLACIAL, Classes.BRAWLER));
-        championsDummy.add(new Champion("Warwick", 3, Origin.WILD, Classes.BRAWLER));
-        championsDummy.add(new Champion("Yasou", 3, Origin.EXILE, Classes.BLADEMASTER));
-*/
+
+        championsDummy.add(new Champion("Aatrox", 3, new ArrayList<Origin>(Arrays.asList(Origin.DEMON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BLADEMASTER))));
+        championsDummy.add(new Champion("Ahri", 2, new ArrayList<Origin>(Arrays.asList(Origin.WILD)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
+        championsDummy.add(new Champion("Akali", 4, new ArrayList<Origin>(Arrays.asList(Origin.NINJA)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ASSASIN))));
+        championsDummy.add(new Champion("Anivia", 5, new ArrayList<Origin>(Arrays.asList(Origin.GLACIAL)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ELEMENTALIST))));
+        championsDummy.add(new Champion("Ashe", 3, new ArrayList<Origin>(Arrays.asList(Origin.GLACIAL)),
+                new ArrayList<Classes>(Arrays.asList(Classes.RANGER))));
+        championsDummy.add(new Champion("Aurelion Sol", 4, new ArrayList<Origin>(Arrays.asList(Origin.DRAGON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
+        championsDummy.add(new Champion("Blitzcrank", 2, new ArrayList<Origin>(Arrays.asList(Origin.ROBOT)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BRAWLER))));
+        championsDummy.add(new Champion("Brand", 4, new ArrayList<Origin>(Arrays.asList(Origin.DEMON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ELEMENTALIST))));
+        championsDummy.add(new Champion("Braum", 2, new ArrayList<Origin>(Arrays.asList(Origin.GLACIAL)),
+                new ArrayList<Classes>(Arrays.asList(Classes.GUARDIAN))));
+        championsDummy.add(new Champion("Camile", 1, new ArrayList<Origin>(Arrays.asList(Origin.HEXTECH)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BLADEMASTER))));
+        championsDummy.add(new Champion("Chogath", 4, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BRAWLER))));
+        championsDummy.add(new Champion("Darius", 1, new ArrayList<Origin>(Arrays.asList(Origin.IMPERIAL)),
+                new ArrayList<Classes>(Arrays.asList(Classes.KNIGHT))));
+        championsDummy.add(new Champion("Draven", 4, new ArrayList<Origin>(Arrays.asList(Origin.IMPERIAL)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BLADEMASTER))));
+        championsDummy.add(new Champion("Elise", 1, new ArrayList<Origin>(Arrays.asList(Origin.DEMON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SHAPESHIFTER))));
+        championsDummy.add(new Champion("Evellyn", 3, new ArrayList<Origin>(Arrays.asList(Origin.DEMON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ASSASIN))));
+        championsDummy.add(new Champion("Fiora", 1, new ArrayList<Origin>(Arrays.asList(Origin.NOBLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BLADEMASTER))));
+        championsDummy.add(new Champion("Gangplank", 3, new ArrayList<Origin>(Arrays.asList(Origin.PIRATE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BLADEMASTER,Classes.GUNSLINGER))));
+        championsDummy.add(new Champion("Garen", 1, new ArrayList<Origin>(Arrays.asList(Origin.NOBLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.KNIGHT))));
+        championsDummy.add(new Champion("Gnar", 4, new ArrayList<Origin>(Arrays.asList(Origin.WILD,Origin.YORDLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SHAPESHIFTER))));
+        championsDummy.add(new Champion("Graves", 1,new ArrayList<Origin>(Arrays.asList(Origin.PIRATE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.GUNSLINGER))));
+        championsDummy.add(new Champion("Jayce", 2, new ArrayList<Origin>(Arrays.asList(Origin.HEXTECH)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SHAPESHIFTER))));
+        championsDummy.add(new Champion("Jinx", 4, new ArrayList<Origin>(Arrays.asList(Origin.HEXTECH)),
+                new ArrayList<Classes>(Arrays.asList(Classes.GUNSLINGER))));
+        championsDummy.add(new Champion("Kaisa", 5, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
+                new ArrayList<Classes>(Arrays.asList(Classes.RANGER,Classes.ASSASIN))));
+        championsDummy.add(new Champion("Karthus", 5, new ArrayList<Origin>(Arrays.asList(Origin.PHANTOM)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
+        championsDummy.add(new Champion("Kassadin", 1, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
+        championsDummy.add(new Champion("Katarina", 3, new ArrayList<Origin>(Arrays.asList(Origin.IMPERIAL)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ASSASIN))));
+        championsDummy.add(new Champion("Kayle", 5, new ArrayList<Origin>(Arrays.asList(Origin.NOBLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.KNIGHT))));
+        championsDummy.add(new Champion("Kennen", 3, new ArrayList<Origin>(Arrays.asList(Origin.NINJA,Origin.YORDLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ELEMENTALIST))));
+        championsDummy.add(new Champion("Khazix", 1, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ASSASIN))));
+        championsDummy.add(new Champion("Kindred", 4, new ArrayList<Origin>(Arrays.asList(Origin.PHANTOM)),
+                new ArrayList<Classes>(Arrays.asList(Classes.RANGER))));
+        championsDummy.add(new Champion("Leona", 4, new ArrayList<Origin>(Arrays.asList(Origin.NOBLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.GUARDIAN))));
+        championsDummy.add(new Champion("Lissandra", 2, new ArrayList<Origin>(Arrays.asList(Origin.GLACIAL)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ELEMENTALIST))));
+        championsDummy.add(new Champion("Lucian", 2, new ArrayList<Origin>(Arrays.asList(Origin.NOBLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.GUNSLINGER))));
+        championsDummy.add(new Champion("Lulu", 2, new ArrayList<Origin>(Arrays.asList(Origin.YORDLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
+        championsDummy.add(new Champion("Mordekaiser", 1, new ArrayList<Origin>(Arrays.asList(Origin.PHANTOM)),
+                new ArrayList<Classes>(Arrays.asList(Classes.KNIGHT))));
+        championsDummy.add(new Champion("Morgana", 3, new ArrayList<Origin>(Arrays.asList(Origin.DEMON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
+        championsDummy.add(new Champion("Nidalee", 1, new ArrayList<Origin>(Arrays.asList(Origin.WILD)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SHAPESHIFTER))));
+        championsDummy.add(new Champion("Pantheon", 5, new ArrayList<Origin>(Arrays.asList(Origin.DRAGON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.GUARDIAN))));
+        championsDummy.add(new Champion("Poppy", 3, new ArrayList<Origin>(Arrays.asList(Origin.YORDLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.KNIGHT))));
+        championsDummy.add(new Champion("Pyke", 2, new ArrayList<Origin>(Arrays.asList(Origin.PIRATE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ASSASIN))));
+        championsDummy.add(new Champion("RekSai", 2, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BRAWLER))));
+        championsDummy.add(new Champion("Rengar", 3, new ArrayList<Origin>(Arrays.asList(Origin.WILD)),
+                new ArrayList<Classes>(Arrays.asList(Classes.ASSASIN))));
+        championsDummy.add(new Champion("Sejuani", 4, new ArrayList<Origin>(Arrays.asList(Origin.GLACIAL)),
+                new ArrayList<Classes>(Arrays.asList(Classes.KNIGHT))));
+        championsDummy.add(new Champion("Shen", 2, new ArrayList<Origin>(Arrays.asList(Origin.NINJA)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BLADEMASTER))));
+        championsDummy.add(new Champion("Shyvana", 3, new ArrayList<Origin>(Arrays.asList(Origin.DRAGON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SHAPESHIFTER))));
+        championsDummy.add(new Champion("Swain", 5, new ArrayList<Origin>(Arrays.asList(Origin.IMPERIAL,Origin.DEMON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SHAPESHIFTER))));
+        championsDummy.add(new Champion("Tristana", 1, new ArrayList<Origin>(Arrays.asList(Origin.YORDLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.GUNSLINGER))));
+        championsDummy.add(new Champion("Twisted Fate", 2, new ArrayList<Origin>(Arrays.asList(Origin.PIRATE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
+        championsDummy.add(new Champion("Varus", 2, new ArrayList<Origin>(Arrays.asList(Origin.DEMON)),
+                new ArrayList<Classes>(Arrays.asList(Classes.RANGER))));
+        championsDummy.add(new Champion("Vayne", 1, new ArrayList<Origin>(Arrays.asList(Origin.NOBLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.RANGER))));
+        championsDummy.add(new Champion("Veigar", 3, new ArrayList<Origin>(Arrays.asList(Origin.YORDLE)),
+                new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
+        championsDummy.add(new Champion("VI", 3, new ArrayList<Origin>(Arrays.asList(Origin.HEXTECH)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BRAWLER))));
+        championsDummy.add(new Champion("Volibear", 3,new ArrayList<Origin>(Arrays.asList(Origin.GLACIAL)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BRAWLER))));
+        championsDummy.add(new Champion("Warwick", 1, new ArrayList<Origin>(Arrays.asList(Origin.WILD)),
+                new ArrayList<Classes>(Arrays.asList(Classes.BRAWLER))));
         championsDummy.add(new Champion("Yasou", 5, new ArrayList<Origin>(Arrays.asList(Origin.EXILE)),
                 new ArrayList<Classes>(Arrays.asList(Classes.BLADEMASTER))));
 
