@@ -1,6 +1,7 @@
 package champions;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ChampionFabric {
     private ArrayList<Champion> champions;
@@ -16,54 +17,6 @@ public class ChampionFabric {
 
     public ArrayList<Champion> getChampionList() {
         return champions;
-    }
-
-
-    public void printOrigins() {
-        System.out.println("\n--ORIGINS--");
-        for (Origin o : this.origins) {
-            System.out.println("\n-- " + o + "--");
-            for (Champion c : champions) {
-                if (c.isOrigin(o)) {
-                    System.out.print(c.getName() + " | ");
-
-                }
-            }
-        }
-    }
-
-
-    public void printClasses() {
-        System.out.println("\n--CLASSES--");
-        for (Classes cl : this.classes) {
-            System.out.println("\n-- " + cl + "--");
-            for (Champion c : champions) {
-                if (c.isClasses(cl)) {
-                    System.out.print(c.getName() + " | ");
-                }
-            }
-        }
-    }
-
-
-    private Set<Classes> initClasses() {
-        Set<Classes> classesDummy = new HashSet<>();
-        for (Champion c : champions) {
-            for(Classes cl : c.getClas()){
-                classesDummy.add(cl);
-            }
-        }
-        return classesDummy;
-    }
-
-    private Set<Origin> initOrigins() {
-        Set<Origin> originsDummy = new HashSet<>();
-        for (Champion c : champions) {
-            for(Origin o : c.getOrigin()){
-                originsDummy.add(o);
-            }
-        }
-        return originsDummy;
     }
 
     private ArrayList<Champion> initChampionList() {
@@ -187,9 +140,89 @@ public class ChampionFabric {
         return championsDummy;
     }
 
+    private Set<Classes> initClasses() {
+        return champions.stream().flatMap(c -> c.getClas().stream()).collect(Collectors.toSet());
+    }
+
+    private Set<Origin> initOrigins() {
+        return champions.stream().flatMap(c -> c.getOrigin().stream()).collect(Collectors.toSet());
+    }
+
+    public void printOrigins() {
+        System.out.println("\n--ORIGINS--");
+        for (Origin o : this.origins) {
+            System.out.println("\n-- " + o + "--");
+            for (Champion c : champions) {
+                if (c.isOrigin(o)) {
+                    System.out.print(c.getName() + " | ");
+                }
+            }
+        }
+    }
+
+    public void printClasses() {
+        System.out.println("\n--CLASSES--");
+        for (Classes cl : this.classes) {
+            System.out.println("\n-- " + cl + "--");
+            for (Champion c : champions) {
+                if (c.isClasses(cl)) {
+                    System.out.print(c.getName() + " | ");
+                }
+            }
+        }
+    }
+
+
     public void printChampions() {
         for(Champion c : champions){
             System.out.println(c.toString()+"\n");
         }
+    }
+
+    public void analyseChampionSet(Set<Champion> randomChampionSet) {
+        System.out.println("ANALYSE CHAMPION SET");
+
+        HashMap<Origin, Integer> originCounter = new HashMap<>();
+        HashMap<Classes, Integer> classesCounter = new HashMap<>();
+
+
+        for(int i = 1 ; i <= 5 ; i++){
+            for(Champion c : randomChampionSet){
+                if(c.getCost()== i){
+                    System.out.print(c.getName()+"("+c.getCost() +") ");
+                    //init Hashmap
+                    for(Origin o : c.getOrigin()){
+                        if(originCounter.get(o)!=null){
+                            int counter = originCounter.get(o);
+                            originCounter.put(o,counter+1);
+                        }else{
+                            originCounter.put(o,1);
+                        }
+
+                    }
+                    for(Classes cl : c.getClas()){
+                        if(classesCounter.get(cl)!=null){
+                            int counter = classesCounter.get(cl);
+                            classesCounter.put(cl,counter+1);
+                        }else{
+                            classesCounter.put(cl,1);
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println();
+        for(Origin o : origins){
+            if(originCounter.get(o)!=null)
+            System.out.println(o.toString()+":"+originCounter.get(o));
+
+        }
+
+        for(Classes c : classes){
+            if(classesCounter.get(c)!=null)
+            System.out.println(c.toString()+":"+classesCounter.get(c));
+        }
+
+
     }
 }

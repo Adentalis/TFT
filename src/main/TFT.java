@@ -7,6 +7,7 @@ import champions.Origin;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class TFT {
@@ -14,12 +15,21 @@ public class TFT {
 
         ChampionFabric championFabric = new ChampionFabric();
 
-
         ArrayList<Champion> champions = championFabric.getChampionList();
-        System.out.println(champions.size());
-        championFabric.printOrigins();
-        championFabric.printClasses();
-        //championFabric.printChampions();
+
+
+
+        Random rnd = new Random();
+        final int NUMBER_OF_CHAMPIONS = 8;
+        Set<Champion> randomChampionSet = new HashSet<>();
+
+        do{
+            int randomIndex = rnd.nextInt(champions.size());
+            randomChampionSet.add(champions.get(randomIndex));
+        }while(randomChampionSet.size() < NUMBER_OF_CHAMPIONS);
+
+        championFabric.analyseChampionSet(randomChampionSet);
+
 
 
 
