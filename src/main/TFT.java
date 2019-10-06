@@ -18,27 +18,32 @@ public class TFT {
         ArrayList<Champion> champions = championFabric.getChampionList();
 
 
-
         Random rnd = new Random();
-        final int NUMBER_OF_CHAMPIONS = 8;
+        final int NUMBER_OF_CHAMPIONS = 9;
+
+
         Set<Champion> randomChampionSet = new HashSet<>();
+        int matches = 0;
+        int counter =0;
 
-        do{
-            int randomIndex = rnd.nextInt(champions.size());
-            randomChampionSet.add(champions.get(randomIndex));
-        }while(randomChampionSet.size() < NUMBER_OF_CHAMPIONS);
+        do {
+            counter++;
 
-        championFabric.analyseChampionSet(randomChampionSet);
+            if(counter%1000000==0){
+                System.out.println(counter);
+            }
+            randomChampionSet.clear();
+            do {
+                int randomIndex = rnd.nextInt(champions.size());
+                randomChampionSet.add(champions.get(randomIndex));
+            } while (randomChampionSet.size() < NUMBER_OF_CHAMPIONS);
 
+            matches = championFabric.analyseChampionSet(randomChampionSet);
 
+        } while (matches <20);
 
-
-
-
+        System.out.println(counter);
 
 
     }
-
-
-
 }
