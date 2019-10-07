@@ -66,8 +66,8 @@ public class ChampionFabric {
                 new ArrayList<Classes>(Arrays.asList(Classes.SHAPESHIFTER))));
         championsDummy.add(new Champion("Jinx", 4, new ArrayList<Origin>(Arrays.asList(Origin.HEXTECH)),
                 new ArrayList<Classes>(Arrays.asList(Classes.GUNSLINGER))));
-        championsDummy.add(new Champion("Kaisa", 5, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
-                new ArrayList<Classes>(Arrays.asList(Classes.RANGER, Classes.ASSASIN))));
+        // championsDummy.add(new Champion("Kaisa", 5, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
+        //       new ArrayList<Classes>(Arrays.asList(Classes.RANGER, Classes.ASSASIN))));
         championsDummy.add(new Champion("Karthus", 5, new ArrayList<Origin>(Arrays.asList(Origin.PHANTOM)),
                 new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
         championsDummy.add(new Champion("Kassadin", 1, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
@@ -172,103 +172,95 @@ public class ChampionFabric {
         }
     }
 
-
     public void printChampions() {
         for (Champion c : champions) {
             System.out.println(c.toString() + "\n");
         }
     }
 
-    public int analyseChampionSet(Set<Champion> randomChampionSet) {
-       // System.out.println("ANALYSE CHAMPION SET");
+    public int analyseChampionSet(Set<Champion> randomChampionSet,int NUMBER_OF_SYNERGIES) {
+        //init synergies
+        HashMap<Origin, Integer> originSynergies = synergizeOrigins(randomChampionSet);
+        HashMap<Classes, Integer> classesSynergies = synergizeClasses(randomChampionSet);
 
-        HashMap<Origin, Integer> originCounter = new HashMap<>();
-        HashMap<Classes, Integer> classesCounter = new HashMap<>();
+        //remove all useless synergies (brawler(1))
+        HashMap<Origin, Integer> filteredOriginCounter = filterOrigins(originSynergies);
+        HashMap<Classes, Integer> filteredClassesCounter = filterClasses(classesSynergies);
 
+        //count all synergies
+        int matchCounter = countMatches(filteredOriginCounter,filteredClassesCounter);
 
-        for (int i = 1; i <= 5; i++) {
-            for (Champion c : randomChampionSet) {
-                if (c.getCost() == i) {
-                    //System.out.print(c.getName() + "(" + c.getCost() + ") ");
-                    //init Hashmap
-                    for (Origin o : c.getOrigin()) {
-                        if (originCounter.get(o) != null) {
-                            int counter = originCounter.get(o);
-                            originCounter.put(o, counter + 1);
-                        } else {
-                            originCounter.put(o, 1);
-                        }
+        if (matchCounter >= NUMBER_OF_SYNERGIES) {
+            printResult(randomChampionSet,filteredOriginCounter,originSynergies,filteredClassesCounter,classesSynergies,matchCounter);
+        }
 
-                    }
-                    for (Classes cl : c.getClas()) {
-                        if (classesCounter.get(cl) != null) {
-                            int counter = classesCounter.get(cl);
-                            classesCounter.put(cl, counter + 1);
-                        } else {
-                            classesCounter.put(cl, 1);
-                        }
-                    }
+        return matchCounter;
+    }
+
+    private HashMap<Classes, Integer> synergizeClasses(Set<Champion> randomChampionSet) {
+        HashMap<Classes, Integer> classesSynergies = new HashMap<>();
+        for (Champion c : randomChampionSet) {
+            for (Classes cl : c.getClas()) {
+                if (classesSynergies.get(cl) != null) {
+                    int counter = classesSynergies.get(cl);
+                    classesSynergies.put(cl, counter + 1);
+                } else {
+                    classesSynergies.put(cl, 1);
                 }
             }
-        } // end long if --> @REFACTOR
+        }
+        return classesSynergies;
+    }
 
-        /*
-        System.out.println("\nOrigins("+originCounter.size()+")");
-        for (Origin o : origins) {
-            if (originCounter.get(o) != null)
-                System.out.println(o.toString() + ":" + originCounter.get(o));
+    private HashMap<Origin, Integer> synergizeOrigins(Set<Champion> randomChampionSet) {
+        HashMap<Origin, Integer> originSynergies = new HashMap<>();
+        for (Champion c : randomChampionSet) {
+            for (Origin o : c.getOrigin()) {
+                if (originSynergies.get(o) != null) {
+                    int counter = originSynergies.get(o);
+                    originSynergies.put(o, counter + 1);
+                } else {
+                    originSynergies.put(o, 1);
+                }
+            }
 
         }
-        System.out.println("\nClasses("+classesCounter.size()+")");
-        for (Classes c : classes) {
-            if (classesCounter.get(c) != null)
-                System.out.println(c.toString() + ":" + classesCounter.get(c));
-        }
-*/
+        return originSynergies;
+    }
 
-        HashMap<Origin, Integer> filteredOriginCounter = filterOrigins(originCounter);
-        HashMap<Classes, Integer> filteredClassesCounter = filterClasses(classesCounter);
-
+    private int countMatches(HashMap<Origin, Integer> filteredOriginCounter, HashMap<Classes, Integer> filteredClassesCounter) {
 
         int matchCounter = 0;
-
-        for(Origin o : origins){
-            if(filteredOriginCounter.get(o)!=null){
+        for (Origin o : origins) {
+            if (filteredOriginCounter.get(o) != null) {
                 matchCounter += filteredOriginCounter.get(o);
             }
         }
-
-        for(Classes c : classes){
-            if(filteredClassesCounter.get(c)!=null){
+        for (Classes c : classes) {
+            if (filteredClassesCounter.get(c) != null) {
                 matchCounter += filteredClassesCounter.get(c);
             }
         }
+        return matchCounter;
+    }
 
+    private void printResult(Set<Champion> randomChampionSet, HashMap<Origin, Integer> filteredOriginCounter, HashMap<Origin, Integer> originCounter, HashMap<Classes, Integer> filteredClassesCounter, HashMap<Classes, Integer> classesCounter, int matchCounter) {
+        for (Champion ch : randomChampionSet) {
+            System.out.print(ch.getName() + "(" + ch.getCost() + ") - ");
+        }
+        System.out.println();
 
-        if(matchCounter>=20){
-
-            System.out.println("__FILTERED VERSION__");
-
-            for(Champion ch : randomChampionSet){
-                System.out.print(ch.getName()+"("+ch.getCost()+") - ");
-            }
-            System.out.println();
-
-            for (Origin o : origins) {
-                if (filteredOriginCounter.get(o) != null)
-                    System.out.println(o.toString() + ":" + originCounter.get(o));
-
-            }
-
-            for (Classes c : classes) {
-                if (filteredClassesCounter.get(c) != null)
-                    System.out.println(c.toString() + ":" + classesCounter.get(c));
-            }
-            System.out.println(matchCounter);
+        for (Origin o : origins) {
+            if (filteredOriginCounter.get(o) != null)
+                System.out.println(o.toString() + ":" + originCounter.get(o));
         }
 
+        for (Classes c : classes) {
+            if (filteredClassesCounter.get(c) != null)
+                System.out.println(c.toString() + ":" + classesCounter.get(c));
+        }
 
-        return matchCounter;
+        System.out.println(matchCounter);
     }
 
     private HashMap<Origin, Integer> filterOrigins(HashMap<Origin, Integer> originCounter) {
@@ -277,7 +269,7 @@ public class ChampionFabric {
 
         //test code
         if (originCounter.get(Origin.DEMON) != null) {
-            if (originCounter.get(Origin.DEMON) == 2|| originCounter.get(Origin.DEMON) == 4 ||originCounter.get(Origin.DEMON) == 6) {
+            if (originCounter.get(Origin.DEMON) == 2 || originCounter.get(Origin.DEMON) == 4 || originCounter.get(Origin.DEMON) == 6) {
                 filteredOriginCounter.put(Origin.DEMON, originCounter.get(Origin.DEMON));
             }
         }
@@ -290,12 +282,12 @@ public class ChampionFabric {
 
         if (originCounter.get(Origin.EXILE) != null) {
 
-                filteredOriginCounter.put(Origin.EXILE, 1);
+            filteredOriginCounter.put(Origin.EXILE, 1);
 
         }
 
         if (originCounter.get(Origin.GLACIAL) != null) {
-            if (originCounter.get(Origin.GLACIAL) >= 2||originCounter.get(Origin.GLACIAL) >= 4||originCounter.get(Origin.GLACIAL) >= 6) {
+            if (originCounter.get(Origin.GLACIAL) == 2 || originCounter.get(Origin.GLACIAL) == 4 || originCounter.get(Origin.GLACIAL) == 6) {
                 filteredOriginCounter.put(Origin.GLACIAL, originCounter.get(Origin.GLACIAL));
             }
         }
@@ -305,13 +297,13 @@ public class ChampionFabric {
         }
         if (originCounter.get(Origin.HEXTECH) != null) {
 
-            if (originCounter.get(Origin.HEXTECH) == 2||originCounter.get(Origin.HEXTECH) == 4) {
+            if (originCounter.get(Origin.HEXTECH) == 2 || originCounter.get(Origin.HEXTECH) == 4) {
                 filteredOriginCounter.put(Origin.HEXTECH, originCounter.get(Origin.HEXTECH));
             }
         }
         if (originCounter.get(Origin.IMPERIAL) != null) {
 
-            if (originCounter.get(Origin.IMPERIAL) == 2||originCounter.get(Origin.IMPERIAL) == 4) {
+            if (originCounter.get(Origin.IMPERIAL) == 2 || originCounter.get(Origin.IMPERIAL) == 4) {
                 filteredOriginCounter.put(Origin.IMPERIAL, originCounter.get(Origin.IMPERIAL));
             }
         }
@@ -341,13 +333,13 @@ public class ChampionFabric {
             }
         }
         if (originCounter.get(Origin.WILD) != null) {
-            if (originCounter.get(Origin.WILD) >= 2) {
+            if (originCounter.get(Origin.WILD) == 2||originCounter.get(Origin.WILD) == 4) {
                 filteredOriginCounter.put(Origin.WILD, originCounter.get(Origin.WILD));
             }
         }
 
         if (originCounter.get(Origin.VOID) != null) {
-            if (originCounter.get(Origin.VOID) >= 2) {
+            if (originCounter.get(Origin.VOID) == 2||originCounter.get(Origin.VOID) == 4) {
                 filteredOriginCounter.put(Origin.VOID, originCounter.get(Origin.VOID));
             }
         }
@@ -361,25 +353,24 @@ public class ChampionFabric {
         return filteredOriginCounter;
     }
 
-
     private HashMap<Classes, Integer> filterClasses(HashMap<Classes, Integer> classesCounter) {
 
         HashMap<Classes, Integer> filteredClassesCounter = new HashMap<>();
 
         if (classesCounter.get(Classes.ASSASIN) != null) {
-            if (classesCounter.get(Classes.ASSASIN) == 3 ||classesCounter.get(Classes.ASSASIN) == 6) {
+            if (classesCounter.get(Classes.ASSASIN) == 3 || classesCounter.get(Classes.ASSASIN) == 6) {
                 filteredClassesCounter.put(Classes.ASSASIN, classesCounter.get(Classes.ASSASIN));
             }
         }
 
         if (classesCounter.get(Classes.BLADEMASTER) != null) {
-            if (classesCounter.get(Classes.BLADEMASTER) == 3|| classesCounter.get(Classes.BLADEMASTER) >=6) {
+            if (classesCounter.get(Classes.BLADEMASTER) == 3 || classesCounter.get(Classes.BLADEMASTER) >= 6) {
                 filteredClassesCounter.put(Classes.BLADEMASTER, classesCounter.get(Classes.BLADEMASTER));
             }
         }
 
         if (classesCounter.get(Classes.BRAWLER) != null) {
-            if (classesCounter.get(Classes.BRAWLER) == 2 ||classesCounter.get(Classes.BRAWLER) == 4||classesCounter.get(Classes.BRAWLER) == 6) {
+            if (classesCounter.get(Classes.BRAWLER) == 2 || classesCounter.get(Classes.BRAWLER) == 4 || classesCounter.get(Classes.BRAWLER) == 6) {
                 filteredClassesCounter.put(Classes.BRAWLER, classesCounter.get(Classes.BRAWLER));
             }
         }
@@ -392,14 +383,12 @@ public class ChampionFabric {
 
 
         if (classesCounter.get(Classes.GUARDIAN) != null) {
-
             if (classesCounter.get(Classes.GUARDIAN) >= 2) {
                 filteredClassesCounter.put(Classes.GUARDIAN, classesCounter.get(Classes.GUARDIAN));
             }
         }
         if (classesCounter.get(Classes.GUNSLINGER) != null) {
-
-            if (classesCounter.get(Classes.GUNSLINGER) == 2||classesCounter.get(Classes.GUNSLINGER) == 4||classesCounter.get(Classes.GUNSLINGER) == 6) {
+            if (classesCounter.get(Classes.GUNSLINGER) == 2 || classesCounter.get(Classes.GUNSLINGER) == 4 || classesCounter.get(Classes.GUNSLINGER) == 6) {
                 filteredClassesCounter.put(Classes.GUNSLINGER, classesCounter.get(Classes.GUNSLINGER));
             }
         }
@@ -412,24 +401,20 @@ public class ChampionFabric {
 
         if (classesCounter.get(Classes.RANGER) != null) {
 
-            if (classesCounter.get(Classes.RANGER) == 2 ||classesCounter.get(Classes.RANGER) == 4) {
+            if (classesCounter.get(Classes.RANGER) == 2 || classesCounter.get(Classes.RANGER) == 4) {
                 filteredClassesCounter.put(Classes.RANGER, classesCounter.get(Classes.RANGER));
             }
         }
         if (classesCounter.get(Classes.SHAPESHIFTER) != null) {
-
             if (classesCounter.get(Classes.SHAPESHIFTER) == 3 || classesCounter.get(Classes.SHAPESHIFTER) == 6) {
                 filteredClassesCounter.put(Classes.SHAPESHIFTER, classesCounter.get(Classes.SHAPESHIFTER));
             }
         }
         if (classesCounter.get(Classes.SORCERER) != null) {
-
             if (classesCounter.get(Classes.SORCERER) == 3 || classesCounter.get(Classes.SORCERER) == 6) {
                 filteredClassesCounter.put(Classes.SORCERER, classesCounter.get(Classes.SORCERER));
             }
         }
-
-
 
         return filteredClassesCounter;
     }

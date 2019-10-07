@@ -2,8 +2,7 @@ package main;
 
 import champions.Champion;
 import champions.ChampionFabric;
-import champions.Classes;
-import champions.Origin;
+
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,10 +16,9 @@ public class TFT {
 
         ArrayList<Champion> champions = championFabric.getChampionList();
 
-
         Random rnd = new Random();
-        final int NUMBER_OF_CHAMPIONS = 9;
-
+        final int NUMBER_OF_CHAMPIONS = 8;
+        final int NUMBER_OF_SYNERGIES = 15;
 
         Set<Champion> randomChampionSet = new HashSet<>();
         int matches = 0;
@@ -38,12 +36,14 @@ public class TFT {
                 randomChampionSet.add(champions.get(randomIndex));
             } while (randomChampionSet.size() < NUMBER_OF_CHAMPIONS);
 
-            matches = championFabric.analyseChampionSet(randomChampionSet);
+            matches = championFabric.analyseChampionSet(randomChampionSet,NUMBER_OF_SYNERGIES);
 
-        } while (matches <20);
+        } while (matches <NUMBER_OF_SYNERGIES);
 
         System.out.println(counter);
 
 
     }
 }
+
+//%-R0!smP!
