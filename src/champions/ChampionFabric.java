@@ -66,8 +66,8 @@ public class ChampionFabric {
                 new ArrayList<Classes>(Arrays.asList(Classes.SHAPESHIFTER))));
         championsDummy.add(new Champion("Jinx", 4, new ArrayList<Origin>(Arrays.asList(Origin.HEXTECH)),
                 new ArrayList<Classes>(Arrays.asList(Classes.GUNSLINGER))));
-        // championsDummy.add(new Champion("Kaisa", 5, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
-        //       new ArrayList<Classes>(Arrays.asList(Classes.RANGER, Classes.ASSASIN))));
+        championsDummy.add(new Champion("Kaisa", 5, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
+                new ArrayList<Classes>(Arrays.asList(Classes.RANGER, Classes.ASSASIN))));
         championsDummy.add(new Champion("Karthus", 5, new ArrayList<Origin>(Arrays.asList(Origin.PHANTOM)),
                 new ArrayList<Classes>(Arrays.asList(Classes.SORCERER))));
         championsDummy.add(new Champion("Kassadin", 1, new ArrayList<Origin>(Arrays.asList(Origin.VOID)),
@@ -178,7 +178,7 @@ public class ChampionFabric {
         }
     }
 
-    public int analyseChampionSet(Set<Champion> randomChampionSet,int NUMBER_OF_SYNERGIES) {
+    public int analyseChampionSet(Set<Champion> randomChampionSet, int NUMBER_OF_SYNERGIES) {
         //init synergies
         HashMap<Origin, Integer> originSynergies = synergizeOrigins(randomChampionSet);
         HashMap<Classes, Integer> classesSynergies = synergizeClasses(randomChampionSet);
@@ -188,10 +188,10 @@ public class ChampionFabric {
         HashMap<Classes, Integer> filteredClassesCounter = filterClasses(classesSynergies);
 
         //count all synergies
-        int matchCounter = countMatches(filteredOriginCounter,filteredClassesCounter);
+        int matchCounter = countMatches(filteredOriginCounter, filteredClassesCounter);
 
         if (matchCounter >= NUMBER_OF_SYNERGIES) {
-            printResult(randomChampionSet,filteredOriginCounter,originSynergies,filteredClassesCounter,classesSynergies,matchCounter);
+            printResult(randomChampionSet, filteredOriginCounter, originSynergies, filteredClassesCounter, classesSynergies, matchCounter);
         }
 
         return matchCounter;
@@ -245,9 +245,16 @@ public class ChampionFabric {
     }
 
     private void printResult(Set<Champion> randomChampionSet, HashMap<Origin, Integer> filteredOriginCounter, HashMap<Origin, Integer> originCounter, HashMap<Classes, Integer> filteredClassesCounter, HashMap<Classes, Integer> classesCounter, int matchCounter) {
-        for (Champion ch : randomChampionSet) {
+
+
+        List<Champion> championsSorted = getSortedChampionList(randomChampionSet);
+
+
+        for (Champion ch : championsSorted) {
+
             System.out.print(ch.getName() + "(" + ch.getCost() + ") - ");
         }
+
         System.out.println();
 
         for (Origin o : origins) {
@@ -262,6 +269,30 @@ public class ChampionFabric {
 
         System.out.println(matchCounter);
     }
+
+    private List<Champion> getSortedChampionList(Set<Champion> randomChampionSet) {
+        List<Champion> championsSortedDummy = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            List<Champion> dummy = new ArrayList<>();
+            for (Champion ch : randomChampionSet) {
+
+                if (ch.getCost() == i)
+                    dummy.add(ch);
+            }
+
+            Collections.sort(dummy, new Comparator<Champion>() {
+                @Override
+                public int compare(Champion o1, Champion o2) {
+                    return o1.getName().compareTo(o2.getName()) ;
+                }
+            });
+
+            championsSortedDummy.addAll(dummy);
+        }
+        return championsSortedDummy;
+
+    }
+
 
     private HashMap<Origin, Integer> filterOrigins(HashMap<Origin, Integer> originCounter) {
 
@@ -333,13 +364,13 @@ public class ChampionFabric {
             }
         }
         if (originCounter.get(Origin.WILD) != null) {
-            if (originCounter.get(Origin.WILD) == 2||originCounter.get(Origin.WILD) == 4) {
+            if (originCounter.get(Origin.WILD) == 2 || originCounter.get(Origin.WILD) == 4) {
                 filteredOriginCounter.put(Origin.WILD, originCounter.get(Origin.WILD));
             }
         }
 
         if (originCounter.get(Origin.VOID) != null) {
-            if (originCounter.get(Origin.VOID) == 2||originCounter.get(Origin.VOID) == 4) {
+            if (originCounter.get(Origin.VOID) == 2 || originCounter.get(Origin.VOID) == 4) {
                 filteredOriginCounter.put(Origin.VOID, originCounter.get(Origin.VOID));
             }
         }
