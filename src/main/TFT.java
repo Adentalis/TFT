@@ -4,6 +4,8 @@ import champions.Champion;
 import champions.ChampionFabric;
 
 
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -19,6 +21,24 @@ public class TFT {
         Random rnd = new Random();
         final int NUMBER_OF_CHAMPIONS = 8;
         final int NUMBER_OF_SYNERGIES = 15;
+
+
+        /*
+        FileOutputStream fos = null;
+        OutputStreamWriter osw = null;
+        try {
+            fos = new FileOutputStream("hello.txt");
+            osw = new OutputStreamWriter(fos);
+            osw.write("Hello World!.");
+            osw.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        */
+
 
         Set<Champion> randomChampionSet = new HashSet<>();
         int matches = 0;
@@ -46,4 +66,3 @@ public class TFT {
     }
 }
 
-//%-R0!smP!
