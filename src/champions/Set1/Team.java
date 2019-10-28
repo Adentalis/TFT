@@ -1,4 +1,5 @@
-package champions;
+package champions.Set1;
+
 
 import java.util.*;
 
@@ -9,13 +10,14 @@ public class Team {
     public Team(Set<Champion> randomChampionSet){
         this.randomChampionSet = randomChampionSet;
     }
+    /*
     public int analyseChampionSet(Set<Champion> randomChampionSet, int NUMBER_OF_SYNERGIES) {
         //init synergies
-        HashMap<Origin, Integer> originSynergies = synergizeOrigins(randomChampionSet);
+        HashMap<Champion.Origin, Integer> originSynergies = synergizeOrigins(randomChampionSet);
         HashMap<Classes, Integer> classesSynergies = synergizeClasses(randomChampionSet);
 
         //remove all useless synergies (brawler(1))
-        HashMap<Origin, Integer> filteredOriginCounter = filterOrigins(originSynergies);
+        HashMap<Champion.Origin, Integer> filteredOriginCounter = filterOrigins(originSynergies);
         HashMap<Classes, Integer> filteredClassesCounter = filterClasses(classesSynergies);
 
         //count all synergies
@@ -27,7 +29,7 @@ public class Team {
 
         return matchCounter;
     }
-
+*/
     private HashMap<Classes, Integer> synergizeClasses(Set<Champion> randomChampionSet) {
         HashMap<Classes, Integer> classesSynergies = new HashMap<>();
         for (Champion c : randomChampionSet) {
@@ -43,10 +45,10 @@ public class Team {
         return classesSynergies;
     }
 
-    private HashMap<Origin, Integer> synergizeOrigins(Set<Champion> randomChampionSet) {
-        HashMap<Origin, Integer> originSynergies = new HashMap<>();
+    private HashMap<Champion.Origin, Integer> synergizeOrigins(Set<Champion> randomChampionSet) {
+        HashMap<Champion.Origin, Integer> originSynergies = new HashMap<>();
         for (Champion c : randomChampionSet) {
-            for (Origin o : c.getOrigin()) {
+            for (Champion.Origin o : c.getOrigin()) {
                 if (originSynergies.get(o) != null) {
                     int counter = originSynergies.get(o);
                     originSynergies.put(o, counter + 1);
@@ -58,11 +60,11 @@ public class Team {
         }
         return originSynergies;
     }
-
-    private int countMatches(HashMap<Origin, Integer> filteredOriginCounter, HashMap<Classes, Integer> filteredClassesCounter) {
+/*
+    private int countMatches(HashMap<Champion.Origin, Integer> filteredOriginCounter, HashMap<Classes, Integer> filteredClassesCounter) {
 
         int matchCounter = 0;
-        for (Origin o : origins) {
+        for (Champion.Origin o : origins) {
             if (filteredOriginCounter.get(o) != null) {
                 matchCounter += filteredOriginCounter.get(o);
             }
@@ -75,7 +77,7 @@ public class Team {
         return matchCounter;
     }
 
-    private void saveResult(Set<Champion> randomChampionSet, HashMap<Origin, Integer> filteredOriginCounter, HashMap<Origin, Integer> originCounter, HashMap<Classes, Integer> filteredClassesCounter, HashMap<Classes, Integer> classesCounter, int matchCounter) {
+    private void saveResult(Set<Champion> randomChampionSet, HashMap<Champion.Origin, Integer> filteredOriginCounter, HashMap<Champion.Origin, Integer> originCounter, HashMap<Classes, Integer> filteredClassesCounter, HashMap<Classes, Integer> classesCounter, int matchCounter) {
 
         List<Champion> championsSorted = getSortedChampionList(randomChampionSet);
 
@@ -84,7 +86,7 @@ public class Team {
             System.out.print(ch.getName() + "(" + ch.getCost() + ") - ");
         }
         System.out.println();
-        for (Origin o : origins) {
+        for (Champion.Origin o : origins) {
             if (filteredOriginCounter.get(o) != null)
                 System.out.println(o.toString() + ":" + originCounter.get(o));
         }
@@ -94,7 +96,7 @@ public class Team {
         }
         System.out.println(matchCounter);
     }
-
+*/
     private List<Champion> getSortedChampionList(Set<Champion> randomChampionSet) {
         List<Champion> championsSortedDummy = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
@@ -119,89 +121,89 @@ public class Team {
     }
 
 
-    private HashMap<Origin, Integer> filterOrigins(HashMap<Origin, Integer> originCounter) {
+    private HashMap<Champion.Origin, Integer> filterOrigins(HashMap<Champion.Origin, Integer> originCounter) {
 
-        HashMap<Origin, Integer> filteredOriginCounter = new HashMap<>();
+        HashMap<Champion.Origin, Integer> filteredOriginCounter = new HashMap<>();
 
-        if (originCounter.get(Origin.DEMON) != null) {
-            if (originCounter.get(Origin.DEMON) == 2 || originCounter.get(Origin.DEMON) == 4 || originCounter.get(Origin.DEMON) == 6) {
-                filteredOriginCounter.put(Origin.DEMON, originCounter.get(Origin.DEMON));
+        if (originCounter.get(Champion.Origin.DEMON) != null) {
+            if (originCounter.get(Champion.Origin.DEMON) == 2 || originCounter.get(Champion.Origin.DEMON) == 4 || originCounter.get(Champion.Origin.DEMON) == 6) {
+                filteredOriginCounter.put(Champion.Origin.DEMON, originCounter.get(Champion.Origin.DEMON));
             }
         }
 
-        if (originCounter.get(Origin.DRAGON) != null) {
-            if (originCounter.get(Origin.DRAGON) >= 2) {
-                filteredOriginCounter.put(Origin.DRAGON, originCounter.get(Origin.DRAGON));
+        if (originCounter.get(Champion.Origin.DRAGON) != null) {
+            if (originCounter.get(Champion.Origin.DRAGON) >= 2) {
+                filteredOriginCounter.put(Champion.Origin.DRAGON, originCounter.get(Champion.Origin.DRAGON));
             }
         }
 
-        if (originCounter.get(Origin.EXILE) != null) {
+        if (originCounter.get(Champion.Origin.EXILE) != null) {
 
-            filteredOriginCounter.put(Origin.EXILE, 1);
+            filteredOriginCounter.put(Champion.Origin.EXILE, 1);
 
         }
 
-        if (originCounter.get(Origin.GLACIAL) != null) {
-            if (originCounter.get(Origin.GLACIAL) == 2 || originCounter.get(Origin.GLACIAL) == 4 || originCounter.get(Origin.GLACIAL) == 6) {
-                filteredOriginCounter.put(Origin.GLACIAL, originCounter.get(Origin.GLACIAL));
+        if (originCounter.get(Champion.Origin.GLACIAL) != null) {
+            if (originCounter.get(Champion.Origin.GLACIAL) == 2 || originCounter.get(Champion.Origin.GLACIAL) == 4 || originCounter.get(Champion.Origin.GLACIAL) == 6) {
+                filteredOriginCounter.put(Champion.Origin.GLACIAL, originCounter.get(Champion.Origin.GLACIAL));
             }
         }
 
-        if (originCounter.get(Origin.ROBOT) != null) {
-            filteredOriginCounter.put(Origin.ROBOT, 1);
+        if (originCounter.get(Champion.Origin.ROBOT) != null) {
+            filteredOriginCounter.put(Champion.Origin.ROBOT, 1);
         }
-        if (originCounter.get(Origin.HEXTECH) != null) {
+        if (originCounter.get(Champion.Origin.HEXTECH) != null) {
 
-            if (originCounter.get(Origin.HEXTECH) == 2 || originCounter.get(Origin.HEXTECH) == 4) {
-                filteredOriginCounter.put(Origin.HEXTECH, originCounter.get(Origin.HEXTECH));
+            if (originCounter.get(Champion.Origin.HEXTECH) == 2 || originCounter.get(Champion.Origin.HEXTECH) == 4) {
+                filteredOriginCounter.put(Champion.Origin.HEXTECH, originCounter.get(Champion.Origin.HEXTECH));
             }
         }
-        if (originCounter.get(Origin.IMPERIAL) != null) {
+        if (originCounter.get(Champion.Origin.IMPERIAL) != null) {
 
-            if (originCounter.get(Origin.IMPERIAL) == 2 || originCounter.get(Origin.IMPERIAL) == 4) {
-                filteredOriginCounter.put(Origin.IMPERIAL, originCounter.get(Origin.IMPERIAL));
+            if (originCounter.get(Champion.Origin.IMPERIAL) == 2 || originCounter.get(Champion.Origin.IMPERIAL) == 4) {
+                filteredOriginCounter.put(Champion.Origin.IMPERIAL, originCounter.get(Champion.Origin.IMPERIAL));
             }
         }
-        if (originCounter.get(Origin.NOBLE) != null) {
+        if (originCounter.get(Champion.Origin.NOBLE) != null) {
 
-            if (originCounter.get(Origin.NOBLE) == 3 || originCounter.get(Origin.NOBLE) == 6) {
-                filteredOriginCounter.put(Origin.NOBLE, originCounter.get(Origin.NOBLE));
-            }
-        }
-
-        if (originCounter.get(Origin.NINJA) != null) {
-
-            if (originCounter.get(Origin.NINJA) == 1 || originCounter.get(Origin.NINJA) == 4) {
-                filteredOriginCounter.put(Origin.NINJA, originCounter.get(Origin.NINJA));
-            }
-        }
-        if (originCounter.get(Origin.PIRATE) != null) {
-
-            if (originCounter.get(Origin.PIRATE) == 3) {
-                filteredOriginCounter.put(Origin.PIRATE, originCounter.get(Origin.PIRATE));
-            }
-        }
-        if (originCounter.get(Origin.PHANTOM) != null) {
-
-            if (originCounter.get(Origin.PHANTOM) >= 2) {
-                filteredOriginCounter.put(Origin.PHANTOM, originCounter.get(Origin.PHANTOM));
-            }
-        }
-        if (originCounter.get(Origin.WILD) != null) {
-            if (originCounter.get(Origin.WILD) == 2 || originCounter.get(Origin.WILD) == 4) {
-                filteredOriginCounter.put(Origin.WILD, originCounter.get(Origin.WILD));
+            if (originCounter.get(Champion.Origin.NOBLE) == 3 || originCounter.get(Champion.Origin.NOBLE) == 6) {
+                filteredOriginCounter.put(Champion.Origin.NOBLE, originCounter.get(Champion.Origin.NOBLE));
             }
         }
 
-        if (originCounter.get(Origin.VOID) != null) {
-            if (originCounter.get(Origin.VOID) == 2 || originCounter.get(Origin.VOID) == 4) {
-                filteredOriginCounter.put(Origin.VOID, originCounter.get(Origin.VOID));
+        if (originCounter.get(Champion.Origin.NINJA) != null) {
+
+            if (originCounter.get(Champion.Origin.NINJA) == 1 || originCounter.get(Champion.Origin.NINJA) == 4) {
+                filteredOriginCounter.put(Champion.Origin.NINJA, originCounter.get(Champion.Origin.NINJA));
             }
         }
-        if (originCounter.get(Origin.YORDLE) != null) {
+        if (originCounter.get(Champion.Origin.PIRATE) != null) {
 
-            if (originCounter.get(Origin.YORDLE) == 3 || originCounter.get(Origin.YORDLE) == 6) {
-                filteredOriginCounter.put(Origin.YORDLE, originCounter.get(Origin.YORDLE));
+            if (originCounter.get(Champion.Origin.PIRATE) == 3) {
+                filteredOriginCounter.put(Champion.Origin.PIRATE, originCounter.get(Champion.Origin.PIRATE));
+            }
+        }
+        if (originCounter.get(Champion.Origin.PHANTOM) != null) {
+
+            if (originCounter.get(Champion.Origin.PHANTOM) >= 2) {
+                filteredOriginCounter.put(Champion.Origin.PHANTOM, originCounter.get(Champion.Origin.PHANTOM));
+            }
+        }
+        if (originCounter.get(Champion.Origin.WILD) != null) {
+            if (originCounter.get(Champion.Origin.WILD) == 2 || originCounter.get(Champion.Origin.WILD) == 4) {
+                filteredOriginCounter.put(Champion.Origin.WILD, originCounter.get(Champion.Origin.WILD));
+            }
+        }
+
+        if (originCounter.get(Champion.Origin.VOID) != null) {
+            if (originCounter.get(Champion.Origin.VOID) == 2 || originCounter.get(Champion.Origin.VOID) == 4) {
+                filteredOriginCounter.put(Champion.Origin.VOID, originCounter.get(Champion.Origin.VOID));
+            }
+        }
+        if (originCounter.get(Champion.Origin.YORDLE) != null) {
+
+            if (originCounter.get(Champion.Origin.YORDLE) == 3 || originCounter.get(Champion.Origin.YORDLE) == 6) {
+                filteredOriginCounter.put(Champion.Origin.YORDLE, originCounter.get(Champion.Origin.YORDLE));
             }
         }
 

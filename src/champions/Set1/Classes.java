@@ -1,4 +1,4 @@
-package champions;
+package champions.Set1;
 
 public enum Classes {
     ASSASIN, BLADEMASTER, BRAWLER, ELEMENTALIST , GUARDIAN, GUNSLINGER, KNIGHT, RANGER, SHAPESHIFTER, SORCERER

@@ -1,4 +1,4 @@
-package champions;
+package champions.Set1;
 
 import java.util.List;
 
@@ -91,4 +91,7 @@ public class Champion {
     }
 
 
+    public enum Origin {
+        DEMON, DRAGON, EXILE, GLACIAL, ROBOT, HEXTECH,IMPERIAL, NOBLE, NINJA, PIRATE, PHANTOM, WILD, VOID, YORDLE
+    }
 }

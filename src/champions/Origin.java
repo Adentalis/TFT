@@ -1,5 +1,0 @@
-package champions;
-
-public enum Origin {
-    DEMON, DRAGON, EXILE, GLACIAL, ROBOT, HEXTECH,IMPERIAL, NOBLE, NINJA, PIRATE, PHANTOM, WILD, VOID, YORDLE
-}

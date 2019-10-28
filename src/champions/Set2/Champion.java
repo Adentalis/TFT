@@ -1,15 +1,21 @@
-package champions;
+package champions.Set2;
+
 
 import java.util.List;
 
-public class ChampionSyn {
+/*
+    This class is all about A CHAMPION ITSELF
+
+ */
+
+public class Champion {
 
     private String name;
     private List<Synergies_SET2> synergies;
     private int cost;
 
 
-    public ChampionSyn(String name,int cost,List<Synergies_SET2> synergies) {
+    public Champion(String name, int cost, List<Synergies_SET2> synergies) {
         this.name = name;
         this.synergies = synergies;
         this.cost = cost;
@@ -39,18 +45,16 @@ public class ChampionSyn {
 
 
     public String toString(){
-        return "name:\t"+ name+
-                "\nsynergies:" +getStringSynergies()+
-                "\ncost:\t" +cost+"\n"
-                ;
-    }
-
-    private String getStringSynergies() {
         String string ="";
         for (Synergies_SET2 s :synergies){
             string+= s+"\t";
         }
-        return string;
+
+        return "name:\t"+ name+
+                "\nsynergies:" +string+
+                "\ncost:\t" +cost+"\n"
+                ;
     }
+
 
 }
