@@ -3,13 +3,13 @@ package champions;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ChampionFabric {
+public class ChampionFabric_SET1 {
     private ArrayList<Champion> champions;
     private Set<Classes> classes;
     private Set<Origin> origins;
 
 
-    public ChampionFabric() {
+    public ChampionFabric_SET1() {
         champions = initChampionList();
         classes = initClasses();
         origins = initOrigins();
