@@ -1,6 +1,7 @@
 package champions.Set2;
 
 import champions.Set2.Synergies_SET2;
+import champions.Set2.Champion;
 
 import java.util.*;
 
@@ -18,17 +19,32 @@ public class TeamAnalyser_Set2 {
 
         //count all viable synergies
         int matchCounter = countMatches(synergiesFiltered);
-/*
+
         if (matchCounter >= NUMBER_OF_SYNERGIES) {
-            saveResult(randomChampionSet, filteredOriginCounter, originSynergies, filteredClassesCounter, classesSynergies, matchCounter);
+            saveResult(randomChampionSet, synergiesFiltered, matchCounter);
         }
-*/
+
         return matchCounter;
+    }
+
+    private void saveResult(Set<Champion> randomChampionSet, HashMap<Synergies_SET2, Integer> synergiesFiltered, int matchCounter) {
+        List<Champion> championsSorted = getSortedChampionList(randomChampionSet);
+
+        for (Champion c : championsSorted) {
+            System.out.print(c.getName() + "(" + c.getCost() + ") - ");
+        }
+        System.out.println();
+
+        for (Synergies_SET2 s : synergiesFiltered.keySet()) {
+            System.out.println(s+"("+synergiesFiltered.get(s)+")");
+        }
+        System.out.println(matchCounter);
+
     }
 
     private int countMatches(HashMap<Synergies_SET2, Integer> synergiesFiltered) {
         int counter = 0;
-        for(Synergies_SET2 s : synergiesFiltered.keySet()){
+        for (Synergies_SET2 s : synergiesFiltered.keySet()) {
             counter += synergiesFiltered.get(s);
         }
         return counter;
@@ -73,12 +89,12 @@ public class TeamAnalyser_Set2 {
         }
 
         if (synergiesAll.get(Synergies_SET2.BLADEMASTER) != null) {
-            if (synergiesAll.get(Synergies_SET2.BLADEMASTER) == 2 || synergiesAll.get(Synergies_SET2.BLADEMASTER) == 4|| synergiesAll.get(Synergies_SET2.BLADEMASTER) == 6)
+            if (synergiesAll.get(Synergies_SET2.BLADEMASTER) == 2 || synergiesAll.get(Synergies_SET2.BLADEMASTER) == 4 || synergiesAll.get(Synergies_SET2.BLADEMASTER) == 6)
                 res.put(Synergies_SET2.BLADEMASTER, synergiesAll.get(Synergies_SET2.BLADEMASTER));
         }
 
         if (synergiesAll.get(Synergies_SET2.CLOUD) != null) {
-            if (synergiesAll.get(Synergies_SET2.CLOUD) == 2 || synergiesAll.get(Synergies_SET2.CLOUD) == 3|| synergiesAll.get(Synergies_SET2.CLOUD) == 4)
+            if (synergiesAll.get(Synergies_SET2.CLOUD) == 2 || synergiesAll.get(Synergies_SET2.CLOUD) == 3 || synergiesAll.get(Synergies_SET2.CLOUD) == 4)
                 res.put(Synergies_SET2.CLOUD, synergiesAll.get(Synergies_SET2.CLOUD));
         }
 
@@ -98,22 +114,22 @@ public class TeamAnalyser_Set2 {
         }
 
         if (synergiesAll.get(Synergies_SET2.ELECTRIC) != null) {
-            if (synergiesAll.get(Synergies_SET2.ELECTRIC) == 2 || synergiesAll.get(Synergies_SET2.ELECTRIC) == 3|| synergiesAll.get(Synergies_SET2.ELECTRIC) == 4)
+            if (synergiesAll.get(Synergies_SET2.ELECTRIC) == 2 || synergiesAll.get(Synergies_SET2.ELECTRIC) == 3 || synergiesAll.get(Synergies_SET2.ELECTRIC) == 4)
                 res.put(Synergies_SET2.ELECTRIC, synergiesAll.get(Synergies_SET2.ELECTRIC));
         }
 
         if (synergiesAll.get(Synergies_SET2.GLACIAL) != null) {
-            if (synergiesAll.get(Synergies_SET2.GLACIAL) == 2 || synergiesAll.get(Synergies_SET2.GLACIAL) == 4|| synergiesAll.get(Synergies_SET2.GLACIAL) == 6)
+            if (synergiesAll.get(Synergies_SET2.GLACIAL) == 2 || synergiesAll.get(Synergies_SET2.GLACIAL) == 4 || synergiesAll.get(Synergies_SET2.GLACIAL) == 6)
                 res.put(Synergies_SET2.GLACIAL, synergiesAll.get(Synergies_SET2.GLACIAL));
         }
 
         if (synergiesAll.get(Synergies_SET2.INFERNO) != null) {
-            if (synergiesAll.get(Synergies_SET2.INFERNO) == 3 || synergiesAll.get(Synergies_SET2.INFERNO) == 6|| synergiesAll.get(Synergies_SET2.INFERNO) == 9)
+            if (synergiesAll.get(Synergies_SET2.INFERNO) == 3 || synergiesAll.get(Synergies_SET2.INFERNO) == 6 || synergiesAll.get(Synergies_SET2.INFERNO) == 9)
                 res.put(Synergies_SET2.INFERNO, synergiesAll.get(Synergies_SET2.INFERNO));
         }
 
         if (synergiesAll.get(Synergies_SET2.LIGHT) != null) {
-            if (synergiesAll.get(Synergies_SET2.LIGHT) == 3 || synergiesAll.get(Synergies_SET2.LIGHT) == 6|| synergiesAll.get(Synergies_SET2.LIGHT) == 9)
+            if (synergiesAll.get(Synergies_SET2.LIGHT) == 3 || synergiesAll.get(Synergies_SET2.LIGHT) == 6 || synergiesAll.get(Synergies_SET2.LIGHT) == 9)
                 res.put(Synergies_SET2.LIGHT, synergiesAll.get(Synergies_SET2.LIGHT));
         }
 
@@ -123,7 +139,7 @@ public class TeamAnalyser_Set2 {
         }
 
         if (synergiesAll.get(Synergies_SET2.MOUNTAIN) != null) {
-            if (synergiesAll.get(Synergies_SET2.MOUNTAIN) == 2 )
+            if (synergiesAll.get(Synergies_SET2.MOUNTAIN) == 2)
                 res.put(Synergies_SET2.MOUNTAIN, synergiesAll.get(Synergies_SET2.MOUNTAIN));
         }
 
@@ -133,12 +149,12 @@ public class TeamAnalyser_Set2 {
         }
 
         if (synergiesAll.get(Synergies_SET2.OCEAN) != null) {
-            if (synergiesAll.get(Synergies_SET2.OCEAN) == 2 || synergiesAll.get(Synergies_SET2.OCEAN) == 4|| synergiesAll.get(Synergies_SET2.OCEAN) == 6)
+            if (synergiesAll.get(Synergies_SET2.OCEAN) == 2 || synergiesAll.get(Synergies_SET2.OCEAN) == 4 || synergiesAll.get(Synergies_SET2.OCEAN) == 6)
                 res.put(Synergies_SET2.OCEAN, synergiesAll.get(Synergies_SET2.OCEAN));
         }
 
         if (synergiesAll.get(Synergies_SET2.POISON) != null) {
-            if (synergiesAll.get(Synergies_SET2.POISON) == 3 )
+            if (synergiesAll.get(Synergies_SET2.POISON) == 3)
                 res.put(Synergies_SET2.POISON, synergiesAll.get(Synergies_SET2.POISON));
         }
 
@@ -147,23 +163,23 @@ public class TeamAnalyser_Set2 {
                 res.put(Synergies_SET2.PREDATOR, synergiesAll.get(Synergies_SET2.PREDATOR));
         }
         if (synergiesAll.get(Synergies_SET2.RANGER) != null) {
-            if (synergiesAll.get(Synergies_SET2.RANGER) == 2|| synergiesAll.get(Synergies_SET2.RANGER) == 4|| synergiesAll.get(Synergies_SET2.RANGER) == 6)
+            if (synergiesAll.get(Synergies_SET2.RANGER) == 2 || synergiesAll.get(Synergies_SET2.RANGER) == 4 || synergiesAll.get(Synergies_SET2.RANGER) == 6)
                 res.put(Synergies_SET2.RANGER, synergiesAll.get(Synergies_SET2.RANGER));
         }
         if (synergiesAll.get(Synergies_SET2.SHADOW) != null) {
-            if (synergiesAll.get(Synergies_SET2.SHADOW) == 2|| synergiesAll.get(Synergies_SET2.SHADOW) == 4)
+            if (synergiesAll.get(Synergies_SET2.SHADOW) == 2 || synergiesAll.get(Synergies_SET2.SHADOW) == 4)
                 res.put(Synergies_SET2.SHADOW, synergiesAll.get(Synergies_SET2.SHADOW));
         }
         if (synergiesAll.get(Synergies_SET2.STEEL) != null) {
-            if (synergiesAll.get(Synergies_SET2.STEEL) == 2|| synergiesAll.get(Synergies_SET2.STEEL) == 3|| synergiesAll.get(Synergies_SET2.STEEL) == 4)
+            if (synergiesAll.get(Synergies_SET2.STEEL) == 2 || synergiesAll.get(Synergies_SET2.STEEL) == 3 || synergiesAll.get(Synergies_SET2.STEEL) == 4)
                 res.put(Synergies_SET2.STEEL, synergiesAll.get(Synergies_SET2.STEEL));
         }
         if (synergiesAll.get(Synergies_SET2.SUMMONER) != null) {
-            if (synergiesAll.get(Synergies_SET2.SUMMONER) == 3|| synergiesAll.get(Synergies_SET2.SUMMONER) == 6)
+            if (synergiesAll.get(Synergies_SET2.SUMMONER) == 3 || synergiesAll.get(Synergies_SET2.SUMMONER) == 6)
                 res.put(Synergies_SET2.SUMMONER, synergiesAll.get(Synergies_SET2.SUMMONER));
         }
         if (synergiesAll.get(Synergies_SET2.WARDEN) != null) {
-            if (synergiesAll.get(Synergies_SET2.WARDEN) == 2|| synergiesAll.get(Synergies_SET2.WARDEN) == 4|| synergiesAll.get(Synergies_SET2.WARDEN) == 6)
+            if (synergiesAll.get(Synergies_SET2.WARDEN) == 2 || synergiesAll.get(Synergies_SET2.WARDEN) == 4 || synergiesAll.get(Synergies_SET2.WARDEN) == 6)
                 res.put(Synergies_SET2.WARDEN, synergiesAll.get(Synergies_SET2.WARDEN));
         }
         if (synergiesAll.get(Synergies_SET2.WOODLAND) != null) {
@@ -174,53 +190,27 @@ public class TeamAnalyser_Set2 {
         return res;
     }
 
-    /*
-
-        private void saveResult(Set<champions.Set1.Champion> randomChampionSet, HashMap<champions.Set1.Champion.Origin, Integer> filteredOriginCounter, HashMap<champions.Set1.Champion.Origin, Integer> originCounter, HashMap<Classes, Integer> filteredClassesCounter, HashMap<Classes, Integer> classesCounter, int matchCounter) {
-
-            List<champions.Set1.Champion> championsSorted = getSortedChampionList(randomChampionSet);
-
-
-            for (champions.Set1.Champion ch : championsSorted) {
-                System.out.print(ch.getName() + "(" + ch.getCost() + ") - ");
+    private List<Champion> getSortedChampionList(Set<Champion> randomChampionSet) {
+        List<Champion> championsSorted = new ArrayList<>();
+        for (int i = 1; i <= 7; i++) {
+            List<Champion> dummy = new ArrayList<>();
+            for (Champion ch : randomChampionSet) {
+                if (ch.getCost() == i)
+                    dummy.add(ch);
             }
-            System.out.println();
-            for (champions.Set1.Champion.Origin o : origins) {
-                if (filteredOriginCounter.get(o) != null)
-                    System.out.println(o.toString() + ":" + originCounter.get(o));
-            }
-            for (Classes c : classes) {
-                if (filteredClassesCounter.get(c) != null)
-                    System.out.println(c.toString() + ":" + classesCounter.get(c));
-            }
-            System.out.println(matchCounter);
-        }
 
-        private List<champions.Set1.Champion> getSortedChampionList(Set<champions.Set1.Champion> randomChampionSet) {
-            List<champions.Set1.Champion> championsSortedDummy = new ArrayList<>();
-            for (int i = 1; i <= 5; i++) {
-                List<champions.Set1.Champion> dummy = new ArrayList<>();
-                for (champions.Set1.Champion ch : randomChampionSet) {
-
-                    if (ch.getCost() == i)
-                        dummy.add(ch);
+            Collections.sort(dummy, new Comparator<Champion>() {
+                @Override
+                public int compare(Champion o1, Champion o2) {
+                    return o1.getName().compareTo(o2.getName());
                 }
+            });
 
-                Collections.sort(dummy, new Comparator<champions.Set1.Champion>() {
-                    @Override
-                    public int compare(champions.Set1.Champion o1, champions.Set1.Champion o2) {
-                        return o1.getName().compareTo(o2.getName()) ;
-                    }
-                });
-
-                championsSortedDummy.addAll(dummy);
-            }
-            return championsSortedDummy;
-
+            championsSorted.addAll(dummy);
         }
+        return championsSorted;
 
-    */
-
+    }
 
 
 }
