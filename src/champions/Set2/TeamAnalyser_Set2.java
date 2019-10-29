@@ -3,6 +3,7 @@ package champions.Set2;
 import champions.Set2.Synergies_SET2;
 import champions.Set2.Champion;
 
+import java.io.*;
 import java.util.*;
 
 public class TeamAnalyser_Set2 {
@@ -29,17 +30,49 @@ public class TeamAnalyser_Set2 {
 
     private void saveResult(Set<Champion> randomChampionSet, HashMap<Synergies_SET2, Integer> synergiesFiltered, int matchCounter) {
         List<Champion> championsSorted = getSortedChampionList(randomChampionSet);
-
+        String teamToSave = "";
         for (Champion c : championsSorted) {
-            System.out.print(c.getName() + "(" + c.getCost() + ") - ");
+            teamToSave += c.getName() + "(" + c.getCost() + ") - ";
         }
-        System.out.println();
+        System.out.println(teamToSave);
 
         for (Synergies_SET2 s : synergiesFiltered.keySet()) {
-            System.out.println(s+"("+synergiesFiltered.get(s)+")");
+            System.out.println(s + "(" + synergiesFiltered.get(s) + ")");
         }
         System.out.println(matchCounter);
 
+        String file = readFile();
+        String filePath = "./src/combinations/8-15";
+        BufferedWriter writer;
+        try {
+            writer = new BufferedWriter(new FileWriter(filePath ));
+            writer.write(file);
+            writer.write(teamToSave);
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private String readFile() {
+        String filePath = "./src/combinations/8-15";
+        String res = "";
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(filePath));
+            String line = reader.readLine();
+            while (line != null) {
+                System.out.println(line);
+                res += line + "\n";
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     private int countMatches(HashMap<Synergies_SET2, Integer> synergiesFiltered) {
