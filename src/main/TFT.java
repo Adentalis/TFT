@@ -19,9 +19,9 @@ public class TFT {
         ArrayList<Champion> champions = championFabricSET2.getChampionList();
 
         Random rnd = new Random();
-        final int NUMBER_OF_CHAMPIONS = 7;
-        final int NUMBER_OF_SYNERGIES = 13;
-        final int NUMBER_OF_TRIES = 10000000;
+        final int NUMBER_OF_CHAMPIONS = 9;
+        final int NUMBER_OF_SYNERGIES = 17;
+        final int NUMBER_OF_TRIES = 1000000000;
         int counter = 0;
 
         Set<Champion> randomChampionSet = new HashSet<>();
@@ -30,17 +30,15 @@ public class TFT {
         do {
             randomChampionSet.clear();
             counter++;
-            if(counter %100000 == 0){
-                System.out.println(counter);
+            if(counter %1000000 == 0){
+                System.out.println(counter/1000000 + " Million tries");
             }
             do {
                 int randomIndex = rnd.nextInt(champions.size());
                 randomChampionSet.add(champions.get(randomIndex));
             } while (randomChampionSet.size() < NUMBER_OF_CHAMPIONS);
-            team.analyseChampionSet(randomChampionSet,NUMBER_OF_SYNERGIES);
+            team.analyseChampionSet(randomChampionSet,NUMBER_OF_CHAMPIONS,NUMBER_OF_SYNERGIES);
         }while(counter < NUMBER_OF_TRIES);
-        //}while(team.analyseChampionSet(randomChampionSet,NUMBER_OF_SYNERGIES) <NUMBER_OF_SYNERGIES);
-          //  matches = championFabricSET1.analyseChampionSet(randomChampionSet,NUMBER_OF_SYNERGIES);
 
 
     }
