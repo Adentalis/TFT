@@ -19,8 +19,8 @@ public class TFT {
         ArrayList<Champion> champions = championFabricSET2.getChampionList();
 
         Random rnd = new Random();
-        final int NUMBER_OF_CHAMPIONS = 9;
-        final int NUMBER_OF_SYNERGIES = 17;
+        final int NUMBER_OF_CHAMPIONS = 2;
+        final int NUMBER_OF_SYNERGIES = 3;
         final int NUMBER_OF_TRIES = 1000000000;
         int counter = 0;
 
