@@ -1,12 +1,13 @@
 package champions.Set2;
 
-import champions.Set2.Synergies_SET2;
-import champions.Set2.Champion;
-
 import java.io.*;
 import java.util.*;
 
 public class TeamAnalyser_Set2 {
+    /*
+    This class has one public method --> analyseChampionSet
+    Overgive Parameters to analyse and if a valid team is found save it
+     */
 
     public TeamAnalyser_Set2() {
     }
@@ -71,8 +72,8 @@ public class TeamAnalyser_Set2 {
         String filePath = "./src/combinations/Set2/" + number_of_champions + "-" + matchCounter;
 
         String res = "";
-        String hashRead = "";
-        int hashReadInt = 0;
+        String hashRead;
+        int hashReadInt;
         boolean match = false;
 
         /*
