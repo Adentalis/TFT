@@ -11,49 +11,78 @@ public class TeamAnalyser_Set2 {
     public TeamAnalyser_Set2() {
     }
 
-    public int analyseChampionSet(Set<Champion> randomChampionSet, int NUMBER_OF_CHAMPIONS, int NUMBER_OF_SYNERGIES) {
+    public void analyseChampionSet(final int NUMBER_OF_CHAMPIONS, final int NUMBER_OF_SYNERGIES, final int NUMBER_OF_TRIES) {
+        ChampionFabric_SET2 championFabricSET2 = new ChampionFabric_SET2();
+        ArrayList<Champion> allChampions = championFabricSET2.getChampionList();
+
+        Random rnd = new Random();
+        int counter = 0;
+        Set<Champion> randomChampionSet = new HashSet<>();
+        do {
+            randomChampionSet.clear();
+            //create new randomChampionSet
+            do {
+                int randomIndex = rnd.nextInt(allChampions.size());
+                randomChampionSet.add(allChampions.get(randomIndex));
+            } while (randomChampionSet.size() < NUMBER_OF_CHAMPIONS);
+
+            analyseRandomTeam(randomChampionSet, NUMBER_OF_CHAMPIONS, NUMBER_OF_SYNERGIES);
+
+            counter++;
+            if (counter % 1000000 == 0) {
+                System.out.println(counter / 1000000 + " Million tries");
+            }
+        } while (counter < NUMBER_OF_TRIES);
+
+    }
+
+    private void analyseRandomTeam(Set<Champion> randomChampionSet, int NUMBER_OF_CHAMPIONS, int NUMBER_OF_SYNERGIES) {
         //init synergies
         HashMap<Synergies_SET2, Integer> synergiesAll = synergizeOrigins(randomChampionSet);
 
-        //remove all useless synergies - mages(1)
+        //remove all useless synergies - mages(1) f.ex
         HashMap<Synergies_SET2, Integer> synergiesFiltered = filterSynergies(synergiesAll);
 
-        //count all viable synergies
+        //count all synergies left
         int matchCounter = countMatches(synergiesFiltered);
 
         if (matchCounter >= NUMBER_OF_SYNERGIES) {
-            saveResult(randomChampionSet, synergiesFiltered,NUMBER_OF_CHAMPIONS,matchCounter);
+            saveResult(randomChampionSet, synergiesFiltered, NUMBER_OF_CHAMPIONS, matchCounter);
         }
 
-        return matchCounter;
     }
 
-    private void saveResult(Set<Champion> randomChampionSet, HashMap<Synergies_SET2, Integer> synergiesFiltered,int NUMBER_OF_CHAMPIONS, int matchCounter) {
+    private void saveResult(Set<Champion> randomChampionSet, HashMap<Synergies_SET2, Integer> synergiesFiltered, int NUMBER_OF_CHAMPIONS, int matchCounter) {
         //Sort Champions
         List<Champion> championsSorted = getSortedChampionList(randomChampionSet);
 
         //get the String to write in file
-        String teamToSave = teamToString(championsSorted,synergiesFiltered);
+        String teamToSave = teamToString(championsSorted, synergiesFiltered);
 
         //add the hash at the end of line
         int teamHash = teamToSave.hashCode();
-        teamToSave+="--["+teamHash+"]";
+        teamToSave += "--[" + teamHash + "]";
 
         //write team to file
-        updateFile(teamToSave,teamHash,NUMBER_OF_CHAMPIONS,matchCounter);
-
-
+        updateFile(teamToSave, teamHash, NUMBER_OF_CHAMPIONS, matchCounter);
     }
 
-    private void updateFile(String teamToSave,int teamHash, int number_of_champions, int matchCounter) {
-        String filePath = "./src/combinations/"+number_of_champions+"-"+matchCounter;
+    private void updateFile(String teamToSave, int teamHash, int number_of_champions, int matchCounter) {
+        String filePath = "./src/combinations/Set2/" + number_of_champions + "-" + matchCounter;
 
-        //read file and save in res
         String res = "";
-        String hashRead;
+        String hashRead = "";
         int hashReadInt = 0;
         boolean match = false;
 
+        /*
+        - go through every line in the file
+        - save line in res
+        - save the hash of the line in hashRead
+        - compare if the hash of the team to analyse is equal to the hashread
+        -   if yes -> break = dont save this team
+        -   if no -> continue and add the team in the file
+         */
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(filePath));
@@ -63,13 +92,10 @@ public class TeamAnalyser_Set2 {
                 hashRead = line.substring(line.lastIndexOf("[") + 1);
                 hashRead = hashRead.substring(0, hashRead.length() - 1);
                 hashReadInt = Integer.parseInt(hashRead);
-
-                //if there is a collision - skip this teamcomp
-                if(hashReadInt == teamHash){
+                if (hashReadInt == teamHash) {
                     match = true;
                     break;
                 }
-
                 line = reader.readLine();
             }
             reader.close();
@@ -77,26 +103,23 @@ public class TeamAnalyser_Set2 {
             e.printStackTrace();
         }
 
-        if(match){
-            System.out.println("SAME TEAM HASH!!!!  -->"+teamHash);
+        if (match) {
+            System.out.println("SAME TEAM HASH of "+matchCounter+"!!!!  -->" + teamHash);
             return;
-        }else{
-            System.out.println("NEW TEAM FOUND - "+matchCounter);
+        } else {
+            System.out.println("NEW TEAM FOUND - " + matchCounter);
         }
 
-        //rewrite whole file and add new team
+        //rewrite whole file and add new team - maybe @refactor
         BufferedWriter writer;
         try {
-            writer = new BufferedWriter(new FileWriter(filePath ));
+            writer = new BufferedWriter(new FileWriter(filePath));
             writer.write(res);
             writer.write(teamToSave);
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
 
     }
 
@@ -106,9 +129,8 @@ public class TeamAnalyser_Set2 {
             res += c.getName() + "(" + c.getCost() + ")-";
         }
 
-
         for (Synergies_SET2 s : synergiesFiltered.keySet()) {
-            res+= ("-"+s + "(" + synergiesFiltered.get(s) + ")");
+            res += ("-" + s + "(" + synergiesFiltered.get(s) + ")");
         }
         return res;
     }

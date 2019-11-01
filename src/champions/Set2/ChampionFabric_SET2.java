@@ -6,20 +6,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /*
-    This class is all about the CHAMPION SET2
-
+    In this class are the champions of the Set created
+    Method getChampionList returns an ArrayList of all Champions
  */
 
 public class ChampionFabric_SET2 {
     private ArrayList<Champion> champions;
     private Set<Synergies_SET2> synergies;
 
-
-
     public ChampionFabric_SET2() {
         this.champions = initChampionList();
         this.synergies = initSynergies();
-
     }
 
     public ArrayList<Champion> getChampionList() {
@@ -53,7 +50,7 @@ public class ChampionFabric_SET2 {
         championsDummy.add(new Champion("Thresh", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.OCEAN,Synergies_SET2.WARDEN))));
         championsDummy.add(new Champion("Varus", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.INFERNO,Synergies_SET2.RANGER))));
         championsDummy.add(new Champion("Volibear", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.GLACIAL,Synergies_SET2.ELECTRIC,Synergies_SET2.BERSERKER))));
-        championsDummy.add(new Champion("Yasou", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.CLOUD,Synergies_SET2.BLADEMASTER))));
+        championsDummy.add(new Champion("Yasuo", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.CLOUD,Synergies_SET2.BLADEMASTER))));
 
         championsDummy.add(new Champion("Aatrox", 3, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.LIGHT,Synergies_SET2.BLADEMASTER))));
         championsDummy.add(new Champion("Azir", 3, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.DESERT,Synergies_SET2.SUMMONER))));
@@ -94,7 +91,6 @@ public class ChampionFabric_SET2 {
         return champions.stream().flatMap(c -> c.getSynergies().stream()).collect(Collectors.toSet());
     }
 
-
     public void printAllSynergies() {
         System.out.println("\n--Synergies--");
         for (Synergies_SET2 s : this.synergies) {
@@ -106,7 +102,6 @@ public class ChampionFabric_SET2 {
             }
         }
     }
-
 
     public void printAllChampions() {
         for (Champion c : champions) {
