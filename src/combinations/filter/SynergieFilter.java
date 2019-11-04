@@ -20,6 +20,7 @@ public class SynergieFilter {
     public SynergieFilter(){
         converter = new FileToTeamConverter();
         allTeam = converter.getAllTeams();
+        System.out.println(allTeam.size()+ " Teams to filter");
         filteredTeam = new ArrayList<>();
 
         //helper
@@ -29,7 +30,6 @@ public class SynergieFilter {
     }
 
     public ArrayList<Team> getTeamWithSpecificChampion_String(String s){
-        System.out.println(allTeam.size()+ " Teams to filter");
         filteredTeam.clear();
         Champion championtoFilter = getChampionOutOfString(s);
         for(Team team : allTeam){
@@ -37,9 +37,7 @@ public class SynergieFilter {
 
                 filteredTeam.add(team);
             }
-
         }
-        System.out.println("");
 
         return filteredTeam;
 
@@ -54,5 +52,14 @@ public class SynergieFilter {
         System.out.println("KEINEN CHAMPION MIT DIESEM NAMEN GEFUNDEN!");
         //@TODO REFACTOR i guess
         return null;
+    }
+    //METHODS FOR STATISTICS
+    public void printHowOftenEachChamp(){
+        for(Champion ch : allChampions){
+            filteredTeam.clear();
+            filteredTeam = getTeamWithSpecificChampion_String(ch.getName());
+            System.out.println(ch.getName() +" - "+filteredTeam.size()+ " = "+(double)filteredTeam.size()/(double)allTeam.size()*100+"%");
+        }
+
     }
 }
