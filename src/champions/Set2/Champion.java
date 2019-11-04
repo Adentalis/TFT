@@ -1,6 +1,7 @@
 package champions.Set2;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -8,7 +9,7 @@ import java.util.List;
 
  */
 
-public class Champion {
+public class Champion implements Serializable {
 
     private String name;
     private List<Synergies_SET2> synergies;
