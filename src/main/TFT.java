@@ -1,6 +1,7 @@
 package main;
 
 
+import champions.Set2.Synergies_SET2;
 import champions.Set2.Team;
 import combinations.filter.SynergieFilter;
 
@@ -14,9 +15,10 @@ public class TFT {
         */
 
         SynergieFilter filterer = new SynergieFilter();
-       // ArrayList<Team> f = filterer.getTeamWithSpecificChampion_String("Nautilus");
-        filterer.printHowOftenEachChamp();
-
+       // ArrayList<Team> f = filterer.getTeamWithSpecificChampion_String("Nami");
+        ArrayList<Team> ss = filterer.getTeamWithSpecificSynergy(Synergies_SET2.CLOUD,2);
+       // filterer.printHowOftenEachChamp();
+        System.out.println("END");
     }
 }
 

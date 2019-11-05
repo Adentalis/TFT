@@ -29,9 +29,9 @@ public class Team implements Serializable {
     }
 
     public boolean hasSynergy(Synergies_SET2 s ,int v){
-        if(synergies.get(s)!= null)
-        return true;
-
+        if(synergies.get(s)!= null){
+            return synergies.get(s) == v;
+        }
         return false;
     }
 

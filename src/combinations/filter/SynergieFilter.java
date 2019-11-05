@@ -32,15 +32,17 @@ public class SynergieFilter {
     public ArrayList<Team> getTeamWithSpecificChampion_String(String s){
         filteredTeam.clear();
         Champion championtoFilter = getChampionOutOfString(s);
-        for(Team team : allTeam){
-            if(team.hasChampion(championtoFilter)){
 
+        return getTeamWithSpecificChampion(championtoFilter);
+    }
+    public ArrayList<Team> getTeamWithSpecificChampion(Champion c){
+        filteredTeam.clear();
+        for(Team team : allTeam){
+            if(team.hasChampion(c)){
                 filteredTeam.add(team);
             }
         }
-
         return filteredTeam;
-
     }
 
     private Champion getChampionOutOfString(String s) {
@@ -53,6 +55,18 @@ public class SynergieFilter {
         //@TODO REFACTOR i guess
         return null;
     }
+
+    public ArrayList<Team> getTeamWithSpecificSynergy(Synergies_SET2 s, int counter){
+        filteredTeam.clear();
+        for(Team team : allTeam){
+            if(team.hasSynergy(s,counter)){
+                filteredTeam.add(team);
+            }
+        }
+        return filteredTeam;
+    }
+
+
     //METHODS FOR STATISTICS
     public void printHowOftenEachChamp(){
         for(Champion ch : allChampions){
