@@ -15,10 +15,35 @@ public class TFT {
         */
 
         SynergieFilter filterer = new SynergieFilter();
+        ArrayList<String>champs = new ArrayList<>();
+        champs.add("Nasus");
+        champs.add("Ashe");
+      //  champs.add("Veigar");
+
+        ArrayList<Team> f = filterer.getTeamWithSpecificChampions_String(champs);
        // ArrayList<Team> f = filterer.getTeamWithSpecificChampion_String("Nami");
-        ArrayList<Team> ss = filterer.getTeamWithSpecificSynergy(Synergies_SET2.CLOUD,2);
+       // ArrayList<Team> ss = filterer.getTeamWithSpecificSynergy(Synergies_SET2.CLOUD,2);
        // filterer.printHowOftenEachChamp();
         System.out.println("END");
+
+
+
+        /*TEST CODE
+
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("Hallo");
+        strings.add("Hello");
+        strings.add("ola");
+
+        ArrayList<String> toManipulate = (ArrayList<String>) strings.clone();
+
+        System.out.println();
+        toManipulate.removeIf(o -> o.charAt(0)== 'H');
+
+        System.out.println();
+
+         */
+
     }
 }
 

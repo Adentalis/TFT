@@ -45,6 +45,30 @@ public class SynergieFilter {
         return filteredTeam;
     }
 
+    public ArrayList<Team> getTeamWithSpecificChampions_String(ArrayList<String> champs){
+        ArrayList<Champion> champions = new ArrayList<>();
+        for(String s : champs){
+            champions.add(getChampionOutOfString(s));
+
+        }
+        return getTeamWithSpecificChampions(champions);
+    }
+
+    public ArrayList<Team> getTeamWithSpecificChampions(ArrayList<Champion> champs){
+
+        ArrayList<Team> teamToManipulate = (ArrayList<Team>) allTeam.clone();
+
+        for(Champion ch : champs){
+            teamToManipulate.removeIf(team-> !team.hasChampion(ch));
+
+        }
+        System.out.println();
+
+
+        return filteredTeam;
+    }
+
+
     private Champion getChampionOutOfString(String s) {
         for(Champion ch : allChampions){
             if(ch.getName().equals(s)){
@@ -69,8 +93,9 @@ public class SynergieFilter {
 
     //METHODS FOR STATISTICS
     public void printHowOftenEachChamp(){
+        filteredTeam.clear();
         for(Champion ch : allChampions){
-            filteredTeam.clear();
+
             filteredTeam = getTeamWithSpecificChampion_String(ch.getName());
             System.out.println(ch.getName() +" - "+filteredTeam.size()+ " = "+(double)filteredTeam.size()/(double)allTeam.size()*100+"%");
         }
