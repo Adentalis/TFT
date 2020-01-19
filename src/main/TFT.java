@@ -5,44 +5,46 @@ import champions.Set2.Synergies_SET2;
 import champions.Set2.Team;
 import combinations.filter.SynergieFilter;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import javax.swing.*;
 
 public class TFT {
     public static void main(String[] args) {
-        /*
-        TeamAnalyser_Set2 team = new TeamAnalyser_Set2();
-        team.analyseChampionSet(9,18,10000000);
-        */
-
-        SynergieFilter filterer = new SynergieFilter();
-        ArrayList<String>champs = new ArrayList<>();
-        champs.add("Nasus");
-        champs.add("Ashe");
-      //  champs.add("Veigar");
-
-        ArrayList<Team> f = filterer.getTeamWithSpecificChampions_String(champs);
-       // ArrayList<Team> f = filterer.getTeamWithSpecificChampion_String("Nami");
-       // ArrayList<Team> ss = filterer.getTeamWithSpecificSynergy(Synergies_SET2.CLOUD,2);
-       // filterer.printHowOftenEachChamp();
-        System.out.println("END");
+        SynergieFilter synergieFilter = new SynergieFilter();
+        ArrayList<Team> team = synergieFilter.getTeamWithSpecificChampion_String("Nautilus");
+        System.out.println(team.get(335).toString());
 
 
+        JFrame f=new JFrame("TFT");
 
-        /*TEST CODE
+        JTextField tf=new JTextField();
+        tf.setBounds(50,50, 150,30);
 
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("Hallo");
-        strings.add("Hello");
-        strings.add("ola");
+        JLabel result = new JLabel("Here will be the Result");
+        result.setBounds(50,100,750,450);
 
-        ArrayList<String> toManipulate = (ArrayList<String>) strings.clone();
+        JButton b=new JButton("Click Here");
+        b.setBounds(200,50,95,30);
+        b.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                result.setText(team.get(335).toString());
+            }
+        });
 
-        System.out.println();
-        toManipulate.removeIf(o -> o.charAt(0)== 'H');
+        f.add(b);
+        f.add(result);
+        f.add(tf);
+        f.setSize(800,600);
+        f.setLayout(null);
+        f.setVisible(true);
 
-        System.out.println();
 
-         */
+
+
+
 
     }
 }
