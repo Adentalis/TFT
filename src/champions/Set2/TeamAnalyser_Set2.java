@@ -84,6 +84,7 @@ public class TeamAnalyser_Set2 {
         -   if yes -> break = dont save this team
         -   if no -> continue and add the team in the file
          */
+
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(filePath));
