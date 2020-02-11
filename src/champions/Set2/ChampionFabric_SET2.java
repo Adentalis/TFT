@@ -57,7 +57,7 @@ public class ChampionFabric_SET2 {
         championsDummy.add(new Champion("Thresh", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.OCEAN,Synergies_SET2.WARDEN))));
         championsDummy.add(new Champion("Varus", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.INFERNO,Synergies_SET2.RANGER))));
         championsDummy.add(new Champion("Volibear", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.GLACIAL,Synergies_SET2.ELECTRIC,Synergies_SET2.BERSERKER))));
-        championsDummy.add(new Champion("Yasou", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.CLOUD,Synergies_SET2.BLADEMASTER))));
+        championsDummy.add(new Champion("Yasuo", 2, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.CLOUD,Synergies_SET2.BLADEMASTER))));
 
         championsDummy.add(new Champion("Aatrox", 3, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.LIGHT,Synergies_SET2.BLADEMASTER))));
         championsDummy.add(new Champion("Azir", 3, new ArrayList<Synergies_SET2>(Arrays.asList(Synergies_SET2.DESERT,Synergies_SET2.SUMMONER))));
