@@ -1,3 +1,5 @@
+import { Champion } from './interfaces';
+
 const aatrox: Champion = {
   name: 'Aatrox',
   cost: 5,
@@ -230,7 +232,7 @@ const lissandra: Champion = {
   class: ['Invoker'],
 };
 
-const lux = {
+const lux: Champion = {
   name: 'Lux',
   cost: 4,
   range: 1,
@@ -238,7 +240,7 @@ const lux = {
   class: ['Sorcerer'],
 };
 
-const malzahar = {
+const malzahar: Champion = {
   name: 'Malzahar',
   cost: 1,
   range: 1,
@@ -246,7 +248,7 @@ const malzahar = {
   class: ['Sorcerer'],
 };
 
-const maokai = {
+const maokai: Champion = {
   name: 'Maokai',
   cost: 1,
   range: 1,
@@ -254,7 +256,7 @@ const maokai = {
   class: ['Bastion'],
 };
 
-const nasus = {
+const nasus: Champion = {
   name: 'Nasus',
   cost: 4,
   range: 1,
@@ -262,7 +264,7 @@ const nasus = {
   class: ['Juggernaut'],
 };
 
-const orianna = {
+const orianna: Champion = {
   name: 'Orianna',
   cost: 1,
   range: 1,
@@ -270,7 +272,7 @@ const orianna = {
   class: ['Sorcerer'],
 };
 
-const poppy = {
+const poppy: Champion = {
   name: 'Poppy',
   cost: 1,
   range: 1,
@@ -278,7 +280,7 @@ const poppy = {
   class: ['Bastion'],
 };
 
-const rekSai = {
+const rekSai: Champion = {
   name: "Rek'Sai",
   cost: 3,
   range: 1,
@@ -286,7 +288,7 @@ const rekSai = {
   class: ['Bruiser'],
 };
 
-const renekton = {
+const renekton: Champion = {
   name: 'Renekton',
   cost: 1,
   range: 1,
@@ -294,7 +296,7 @@ const renekton = {
   class: ['Bruiser'],
 };
 
-const ryze = {
+const ryze: Champion = {
   name: 'Ryze',
   cost: 5,
   range: 3,
@@ -302,7 +304,7 @@ const ryze = {
   class: ['Invoker'],
 };
 
-const samira = {
+const samira: Champion = {
   name: 'Samira',
   cost: 1,
   range: 3,
@@ -310,7 +312,7 @@ const samira = {
   class: ['Challenger'],
 };
 
-const sejuani = {
+const sejuani: Champion = {
   name: 'Sejuani',
   cost: 4,
   range: 1,
@@ -318,7 +320,7 @@ const sejuani = {
   class: ['Bruiser'],
 };
 
-const senna = {
+const senna: Champion = {
   name: 'Senna',
   cost: 5,
   range: 3,
@@ -326,7 +328,7 @@ const senna = {
   class: ['Gunner', 'Redeemer'],
 };
 
-const sett = {
+const sett: Champion = {
   name: 'Sett',
   cost: 2,
   range: 1,
@@ -334,7 +336,7 @@ const sett = {
   class: ['Juggernaut'],
 };
 
-const shen = {
+const shen: Champion = {
   name: 'Shen',
   cost: 4,
   range: 1,
@@ -342,7 +344,7 @@ const shen = {
   class: ['Bastion', 'Invoker'],
 };
 
-const sion = {
+const sion: Champion = {
   name: 'Sion',
   cost: 5,
   range: 1,
@@ -350,7 +352,7 @@ const sion = {
   class: ['Bruiser'],
 };
 
-const sona = {
+const sona: Champion = {
   name: 'Sona',
   cost: 3,
   range: 4,
@@ -358,7 +360,7 @@ const sona = {
   class: ['Multicaster'],
 };
 
-const soraka = {
+const soraka: Champion = {
   name: 'Soraka',
   cost: 2,
   range: 4,
@@ -366,7 +368,7 @@ const soraka = {
   class: ['Invoker'],
 };
 
-const swain = {
+const swain: Champion = {
   name: 'Swain',
   cost: 2,
   range: 2,
@@ -374,7 +376,7 @@ const swain = {
   class: ['Sorcerer', 'Strategist'],
 };
 
-const taliyah = {
+const taliyah: Champion = {
   name: 'Taliyah',
   cost: 2,
   range: 4,
@@ -382,7 +384,7 @@ const taliyah = {
   class: ['Multicaster'],
 };
 
-const taric = {
+const taric: Champion = {
   name: 'Taric',
   cost: 3,
   range: 1,
@@ -390,7 +392,7 @@ const taric = {
   class: ['Bastion', 'Sorcerer'],
 };
 
-const teemo = {
+const teemo: Champion = {
   name: 'Teemo',
   cost: 2,
   range: 4,
@@ -398,7 +400,7 @@ const teemo = {
   class: ['Multicaster', 'Strategist'],
 };
 
-const tristana = {
+const tristana: Champion = {
   name: 'Tristana',
   cost: 1,
   range: 4,
@@ -406,7 +408,7 @@ const tristana = {
   class: ['Gunner'],
 };
 
-const urgot = {
+const urgot: Champion = {
   name: 'Urgot',
   cost: 4,
   range: 1,
@@ -414,7 +416,7 @@ const urgot = {
   class: ['Deadeye'],
 };
 
-const velkoz = {
+const velkoz: Champion = {
   name: "Vel'Koz",
   cost: 3,
   range: 4,
@@ -422,7 +424,7 @@ const velkoz = {
   class: ['Multicaster', 'Sorcerer'],
 };
 
-const vi = {
+const vi: Champion = {
   name: 'Vi',
   cost: 2,
   range: 1,
@@ -430,7 +432,7 @@ const vi = {
   class: ['Bruiser'],
 };
 
-const viego = {
+const viego: Champion = {
   name: 'Viego',
   cost: 1,
   range: 1,
@@ -438,7 +440,7 @@ const viego = {
   class: ['Rogue'],
 };
 
-const warwick = {
+const warwick: Champion = {
   name: 'Warwick',
   cost: 2,
   range: 1,
@@ -446,7 +448,7 @@ const warwick = {
   class: ['Challenger', 'Juggernaut'],
 };
 
-const yasuo = {
+const yasuo: Champion = {
   name: 'Yasuo',
   cost: 4,
   range: 1,
@@ -454,7 +456,7 @@ const yasuo = {
   class: ['Challenger'],
 };
 
-const zed = {
+const zed: Champion = {
   name: 'Zed',
   cost: 2,
   range: 1,
@@ -462,10 +464,72 @@ const zed = {
   class: ['Rogue', 'Slayer'],
 };
 
-const zeri = {
+const zeri: Champion = {
   name: 'Zeri',
   cost: 4,
   range: 4,
   origin: ['Zaun'],
   class: ['Gunner'],
 };
+
+export const champions: Champion[] = [
+  aatrox,
+  ahri,
+  akshan,
+  aphelios,
+  ashe,
+  azir,
+  belveth,
+  cassiopeia,
+  chogath,
+  darius,
+  ekko,
+  galio,
+  garen,
+  gwen,
+  heimerdinger,
+  irelia,
+  jarvan,
+  jayce,
+  jhin,
+  jinx,
+  kSante,
+  kaisa,
+  kalista,
+  karma,
+  kassadin,
+  katarina,
+  kayle,
+  kled,
+  lissandra,
+  lux,
+  malzahar,
+  maokai,
+  orianna,
+  poppy,
+  rekSai,
+  renekton,
+  ryze,
+  samira,
+  sejuani,
+  senna,
+  sett,
+  shen,
+  sion,
+  sona,
+  sona,
+  soraka,
+  swain,
+  taliyah,
+  taric,
+  teemo,
+  tristana,
+  urgot,
+  velkoz,
+  vi,
+  viego,
+  warwick,
+  yasuo,
+  zed,
+  zeri,
+];

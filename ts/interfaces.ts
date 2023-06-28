@@ -1,8 +1,8 @@
-interface Team {
+export interface Team {
   champions: Champion[];
 }
 
-interface Champion {
+export interface Champion {
   name: ChampionName;
   cost: 1 | 2 | 3 | 4 | 5;
   range: 1 | 2 | 3 | 4 | 5;
@@ -10,7 +10,7 @@ interface Champion {
   class: Class[];
 }
 
-type Class =
+export type Class =
   | 'Bastion'
   | 'Bruiser'
   | 'Challenger'
@@ -27,7 +27,7 @@ type Class =
   | 'Strategist'
   | 'Technogenius';
 
-type Origin =
+export type Origin =
   | 'Darkin'
   | 'Demacia'
   | 'Freljord'
@@ -43,7 +43,7 @@ type Origin =
   | 'Yordle'
   | 'Zaun';
 
-type ChampionName =
+export type ChampionName =
   | 'Aatrox'
   | 'Ahri'
   | 'Akshan'
